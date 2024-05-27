@@ -13,7 +13,37 @@
         android:theme="@style/Theme.SiKarir"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.welcome.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.questions.QuizQuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.result.QuizResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.starter.QuizStarterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.account.EditAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.catalog.major.DetailMajorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.catalog.career.DetailCareerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.catalog.CatalogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.AuthenticationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

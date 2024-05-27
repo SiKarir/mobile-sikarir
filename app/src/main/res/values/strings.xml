@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SiKarir</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- MENU -->
+    <string name="home_menu">Home</string>
+    <string name="catalog_menu">Catalog</string>
+    <string name="quiz_menu">Quiz</string>
+    <string name="settings_menu">Settings</string>
+
 </resources>
