@@ -8,4 +8,32 @@
     <string name="quiz_menu">Quiz</string>
     <string name="settings_menu">Settings</string>
 
+    <!-- LOGO -->
+    <string name="si_logo">Si</string>
+    <string name="karir_logo">Karir.</string>
+
+    <!-- WELCOME ACTIVITY -->
+    <string name="title_welcome">Selamat Datang!</string>
+    <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
+    <string name="button_welcome">LANJUT</string>
+
+    <!-- LOGIN FRAGMENT -->
+    <string name="title_login">Selamat Datang Kembali!</string>
+    <string name="subtitle_login">Masuk kembali ke akunmu</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_question">Belum memiliki akun?</string>
+    <string name="register_button_text">Daftar</string>
+    <string name="button_login">MASUK</string>
+
+    <!-- REGISTER FRAGMENT -->
+    <string name="title_register">Selamat Datang!</string>
+    <string name="subtitle_register">Daftarkan akunmu</string>
+    <string name="login_button_text">Masuk</string>
+    <string name="register_question">Sudah memiliki akun?</string>
+    <string name="button_register">Daftar</string>
+    <string name="register_name_hint">Name</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Password</string>
+
 </resources>
