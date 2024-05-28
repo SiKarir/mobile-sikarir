@@ -12,6 +12,14 @@
     <string name="si_logo">Si</string>
     <string name="karir_logo">Karir.</string>
 
+    <!-- HOME ACTIVITY -->
+    <string name="greetings_home">Selamat Pagi, Sulthan!</string>
+    <string name="rekomendasi_home_text">Rekomendasi Utama Karir</string>
+    <string name="jurusan_text_home">Program Studi</string>
+    <string name="button_lihat_semua">Lihat Semua</string>
+    <string name="description_career_card">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi</string>
+
+
     <!-- WELCOME ACTIVITY -->
     <string name="title_welcome">Selamat Datang!</string>
     <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
@@ -41,6 +49,26 @@
     <string name="title_jurusan_card">Jurusan</string>
     <string name="title_university_card">Universitas</string>
     <string name="answer_quiz_card">Jawaban</string>
+    <string name="tab_text_1">Karir</string>
+    <string name="tab_text_2">Jurusan</string>
+
+    <!-- ITEM_CAREER -->
+    <string name="title_career_card">Software Engineering</string>
+    <string name="arrow_description">Arrow right</string>
+
+    <!-- CAREER FRAGMENT -->
+    <string name="rekomendasi_karir_text">Rekomendasi Karir Anda</string>
+
+    <!-- MAJOR FRAGMENT -->
+    <string name="title_major_card">S1 Sistem Informasi</string>
+    <string name="rekomendasi_major_text">Rekomendasi Jurusan Anda</string>
+
+    <!-- SEARCH BAR -->
+    <string name="searchbar_hint_karir">Masukkan karir</string>
+    <string name="searchbar_hint_major">Masukkan jurusan</string>
+    <string name="ambil_quiz_str">Ambil Quiz</string>
+    <string name="str_not_taken">Belum ada rekomendasi, silahkan ambil quiz!</string>
+    <string name="img_not_taken">img_not_taken</string>
 
     <!-- EDIT ACCOUNT -->
     <string name="edit_account_button_text">Ubah</string>
