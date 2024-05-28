@@ -7,15 +7,73 @@
     tools:context=".ui.home.MainActivity">
 
     <TextView
+        android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/ubuntu_bold"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/greetings_home"
+        android:textColor="@color/purple_primary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewAvatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.47" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="4dp"
+        android:src="@tools:sample/avatars"
+        app:layout_constraintBottom_toBottomOf="@id/tvGreeting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvProgramStudi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/jurusan_text_home"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toStartOf="@id/buttonLihatSemua"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.506" />
+
+    <Button
+        android:id="@+id/buttonLihatSemua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/button_lihat_semua"
+        android:textColor="@color/yellow_primary"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/tvProgramStudi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvProgramStudi" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_career"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/tvProgramStudi"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="4"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_major_catalog" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
