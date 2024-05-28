@@ -36,4 +36,7 @@
     <string name="register_email_hint">Email</string>
     <string name="register_password_hint">Password</string>
 
+    <!-- ITEM_MAJOR -->
+    <string name="title_jurusan_card">Jurusan</string>
+
 </resources>
