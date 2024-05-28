@@ -69,18 +69,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_layout"
+            android:id="@+id/username_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:hint="@string/login_email_hint"
+            android:hint="@string/login_username_hint"
             app:layout_constraintTop_toBottomOf="@id/tv_login_subtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_email_login"
+                android:id="@+id/input_username_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"/>
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:hint="@string/login_password_hint"
-            app:layout_constraintTop_toBottomOf="@id/email_layout"
+            app:layout_constraintTop_toBottomOf="@id/username_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.8">
@@ -107,15 +107,16 @@
 
         <Button
             android:id="@+id/login_button"
-            android:layout_marginTop="65dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:backgroundTint="@color/yellow_primary"
-            android:text="@string/button_login"
+            android:text="@string/button_register"
             android:textColor="@color/purple_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/password_layout"
+            app:layout_constraintWidth_percent="0.8" />
 
         <LinearLayout
             android:id="@+id/register_container"

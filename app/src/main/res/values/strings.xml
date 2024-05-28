@@ -28,11 +28,11 @@
     <!-- LOGIN FRAGMENT -->
     <string name="title_login">Selamat Datang Kembali!</string>
     <string name="subtitle_login">Masuk kembali ke akunmu</string>
-    <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_question">Belum memiliki akun?</string>
     <string name="register_button_text">Daftar</string>
     <string name="button_login">MASUK</string>
+    <string name="login_username_hint">Username</string>
 
     <!-- REGISTER FRAGMENT -->
     <string name="title_register">Selamat Datang!</string>
@@ -43,6 +43,7 @@
     <string name="register_name_hint">Name</string>
     <string name="register_email_hint">Email</string>
     <string name="register_password_hint">Password</string>
+    <string name="register_username_hint">Username</string>
 
     <!-- ITEM_MAJOR -->
     <string name="title_jurusan_card">Jurusan</string>
@@ -68,5 +69,12 @@
     <string name="ambil_quiz_str">Ambil Quiz</string>
     <string name="str_not_taken">Belum ada rekomendasi, silahkan ambil quiz!</string>
     <string name="img_not_taken">img_not_taken</string>
+
+    <!-- EDIT ACCOUNT -->
+    <string name="edit_account_button_text">Ubah</string>
+    <string name="edit_username_hint">Username</string>
+    <string name="edit_name_hint">Name</string>
+    <string name="edit_email_hint">Email</string>
+    <string name="edit_password_hint">Password</string>
 
 </resources>
