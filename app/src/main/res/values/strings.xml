@@ -38,5 +38,7 @@
 
     <!-- ITEM_MAJOR -->
     <string name="title_jurusan_card">Jurusan</string>
+    <string name="title_university_card">Universitas</string>
+    <string name="answer_quiz_card">Jawaban</string>
 
 </resources>
