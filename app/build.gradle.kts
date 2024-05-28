@@ -56,4 +56,7 @@ dependencies {
 
     //view-pager
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    //cirle-image-view
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }

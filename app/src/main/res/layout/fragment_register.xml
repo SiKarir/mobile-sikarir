@@ -12,11 +12,10 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="65dp"
             android:id="@+id/layout_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +41,9 @@
 
         <TextView
             android:id="@+id/tv_register_title"
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/title_register"
             android:textAlignment="center"
@@ -58,7 +57,7 @@
             android:id="@+id/tv_register_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/subtitle_register"
             android:textAlignment="center"
@@ -72,7 +71,7 @@
             android:id="@+id/name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:hint="@string/register_name_hint"
             app:layout_constraintTop_toBottomOf="@id/tv_register_subtitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,12 +86,30 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/register_username_hint"
+            app:layout_constraintTop_toBottomOf="@id/name_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_username_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/register_email_hint"
-            app:layout_constraintTop_toBottomOf="@id/name_layout"
+            app:layout_constraintTop_toBottomOf="@id/username_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.8">
@@ -108,7 +125,7 @@
             android:id="@+id/password_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/register_password_hint"
             app:layout_constraintTop_toBottomOf="@id/email_layout"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,25 +140,26 @@
                 android:background="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
             android:id="@+id/register_button"
-            android:layout_marginTop="65dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:backgroundTint="@color/yellow_primary"
             android:text="@string/button_register"
             android:textColor="@color/purple_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/password_layout"
+            app:layout_constraintWidth_percent="0.8" />
 
         <LinearLayout
             android:id="@+id/register_container"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_button">
