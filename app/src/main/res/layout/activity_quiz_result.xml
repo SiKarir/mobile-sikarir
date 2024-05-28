@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_primary"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.quiz.result.QuizResultActivity">
+
+    <ImageView
+        android:id="@+id/logo_quiz_result"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/congratulations_word"
+        app:srcCompat="@drawable/quiz_result" />
+
+    <TextView
+        android:id="@+id/congratulations_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="Yey, Selamat anda telah menyelesaikan Quiz!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_quiz_result"
+        app:layout_constraintBottom_toTopOf="@+id/home_word" />
+
+    <TextView
+        android:id="@+id/home_word"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:text="Silahkan ke home untuk mengeksplor karir rekomendasi untukmu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/congratulations_word"
+        app:layout_constraintBottom_toTopOf="@+id/home_button" />
+
+    <Button
+        android:id="@+id/home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow_primary"
+        android:textColor="@color/purple_primary"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_word"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
