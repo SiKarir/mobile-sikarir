@@ -7,7 +7,7 @@
     tools:context=".ui.settings.account.AccountActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/card_question_layout"
+        android:id="@+id/settings_header_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/settings_header"
@@ -18,7 +18,7 @@
         android:padding="16dp">
 
         <LinearLayout
-            android:id="@+id/greetingLayout"
+            android:id="@+id/profileLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -42,6 +42,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvNameAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Abdillah Sulthan"
@@ -51,6 +52,7 @@
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
+                    android:id="@+id/tvEmailAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="abdillahsulthan12@gmail.com"
@@ -60,6 +62,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/btnEditAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_edit"
@@ -67,6 +70,34 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvQuizHistoryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Riwayat Kuis"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_header_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvQuizHistory"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuizHistoryText"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_quiz_history" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -81,32 +112,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="Riwayat Kuis"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_question_layout" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvQuizHistory"
-        android:layout_marginTop="10dp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:itemCount="4"
-        tools:listitem="@layout/item_quiz_history" />
 </androidx.constraintlayout.widget.ConstraintLayout>
