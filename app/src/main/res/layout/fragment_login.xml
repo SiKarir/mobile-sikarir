@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/yellow_primary"
-            android:text="@string/button_register"
+            android:text="@string/button_login"
             android:textColor="@color/purple_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
