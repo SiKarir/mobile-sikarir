@@ -3,15 +3,15 @@ package com.c241ps294.sikarir.ui.home
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ViewSwitcher
 import androidx.appcompat.app.AppCompatActivity
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityMainBinding
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
+import com.c241ps294.sikarir.ui.settings.SettingsActivity
+import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         viewSwitcher = binding.viewSwitcher
-
         if (isQuizTaken) {
             viewSwitcher.displayedChild = 1
         } else {
@@ -35,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.home_page
-
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_page -> {
@@ -51,8 +48,21 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }
+                R.id.settings_page -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
+                    true
+                }
                 else -> false
             }
         }
+
+        binding.btnLihatSemua.setOnClickListener{ navToCatalog() }
+        setContentView(binding.root)
+    }
+
+    private fun navToCatalog() {
+        val intent = Intent(this, CatalogActivity::class.java)
+        startActivity(intent)
     }
 }

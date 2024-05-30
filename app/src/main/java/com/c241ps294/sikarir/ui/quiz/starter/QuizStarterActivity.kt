@@ -9,6 +9,7 @@ import com.c241ps294.sikarir.databinding.ActivityQuizStarterBinding
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.questions.QuizQuestionsActivity
+import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class QuizStarterActivity : AppCompatActivity() {
@@ -34,6 +35,11 @@ class QuizStarterActivity : AppCompatActivity() {
                 }
                 R.id.home_page -> {
                     val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
+                    true
+                }
+                R.id.settings_page -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }
