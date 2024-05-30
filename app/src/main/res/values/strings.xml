@@ -22,7 +22,7 @@
     <!-- WELCOME ACTIVITY -->
     <string name="title_welcome">Selamat Datang!</string>
     <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
-    <string name="button_welcome">LANJUT</string>
+    <string name="button_welcome">Lanjut</string>
 
     <!-- LOGIN FRAGMENT -->
     <string name="title_login">Selamat Datang Kembali!</string>
@@ -30,7 +30,7 @@
     <string name="login_password_hint">Password</string>
     <string name="login_question">Belum memiliki akun?</string>
     <string name="register_button_text">Daftar</string>
-    <string name="button_login">MASUK</string>
+    <string name="button_login">Masuk</string>
     <string name="login_username_hint">Username</string>
 
     <!-- REGISTER FRAGMENT -->

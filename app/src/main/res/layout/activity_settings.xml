@@ -101,7 +101,8 @@
                 app:layout_constraintEnd_toStartOf="@id/arrow_button_akun"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/title_akun_setting" />
+                android:text="@string/title_akun_setting" />
+
 
             <ImageView
                 android:id="@+id/arrow_button_akun"
@@ -145,7 +146,7 @@
                 app:layout_constraintEnd_toStartOf="@id/arrow_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/title_bahasa_setting" />
+                android:text="@string/title_bahasa_setting" />
 
             <ImageView
                 android:id="@+id/arrow_button"
@@ -189,7 +190,7 @@
                 app:layout_constraintEnd_toStartOf="@id/switch_theme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/title_dark_mode_setting" />
+                android:text="@string/title_dark_mode_setting" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switch_theme"
@@ -198,7 +199,6 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.92"
                 app:layout_constraintStart_toEndOf="@+id/tvDarkMode"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -233,7 +233,7 @@
                 app:layout_constraintEnd_toStartOf="@id/arrow_button_logout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/title_logout_setting" />
+                android:text="@string/title_logout_setting" />
 
             <ImageView
                 android:id="@+id/arrow_button_logout"
