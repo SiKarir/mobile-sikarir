@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundTint"
     tools:context=".ui.catalog.career.CareerFragment">
 
     <com.google.android.material.search.SearchBar
@@ -24,10 +24,10 @@
         android:layout_height="0dp"
         android:hint="@string/searchbar_hint_karir"
         app:layout_anchor="@id/searchBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
     <TextView
         android:id="@+id/rekomendasi_title"
@@ -36,7 +36,7 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/rekomendasi_karir_text"
-        android:textColor="@color/black"
+        android:textColor="?attr/textFillColor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,10 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/rekomendasi_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rekomendasi_title"
         tools:itemCount="20"
         tools:listitem="@layout/item_career_catalog" />
 

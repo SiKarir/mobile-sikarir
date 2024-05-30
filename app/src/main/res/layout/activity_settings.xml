@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundTint"
     tools:context=".ui.settings.SettingsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -185,13 +186,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/arrow_button_dark_mode"
+                app:layout_constraintEnd_toStartOf="@id/switch_theme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/title_dark_mode_setting" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switch_theme"
+                android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -251,7 +253,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        app:backgroundTint="@color/purple_primary"
+        app:backgroundTint="?attr/cardBackgroundColor"
         app:itemActiveIndicatorStyle="@color/white"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"

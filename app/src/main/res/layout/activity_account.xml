@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundTint"
     tools:context=".ui.settings.account.AccountActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +81,7 @@
         android:layout_marginStart="20dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="Riwayat Kuis"
-        android:textColor="@color/black"
+        android:textColor="?attr/textFillColor"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -103,7 +104,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        app:backgroundTint="@color/purple_primary"
+        app:backgroundTint="?attr/cardBackgroundColor"
         app:itemActiveIndicatorStyle="@color/white"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
