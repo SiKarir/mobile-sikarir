@@ -78,5 +78,9 @@
 
     <!-- ACCOUNT SETTINGS -->
     <string name="quiz_history">Riwayat Kuis</string>
+    <string name="title_akun_setting">Akun</string>
+    <string name="title_bahasa_setting">Bahasa</string>
+    <string name="title_dark_mode_setting">Mode Gelap</string>
+    <string name="title_logout_setting">Logout</string>
 
 </resources>
