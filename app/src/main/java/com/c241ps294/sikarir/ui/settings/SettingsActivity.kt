@@ -9,6 +9,8 @@ import com.c241ps294.sikarir.databinding.ActivitySettingsBinding
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
+import com.c241ps294.sikarir.ui.settings.account.AccountActivity
+import com.c241ps294.sikarir.ui.settings.account.EditAccountActivity
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -50,6 +52,14 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.arrowButtonLogout.setOnClickListener {
             startActivity(Intent(this, WelcomeActivity::class.java))
+        }
+
+        binding.btnEditAccount.setOnClickListener {
+            startActivity(Intent(this, EditAccountActivity::class.java))
+        }
+
+        binding.arrowButtonAkun.setOnClickListener {
+            startActivity(Intent(this, AccountActivity::class.java))
         }
 
         setContentView(binding.root)
