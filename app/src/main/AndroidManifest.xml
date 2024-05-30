@@ -16,9 +16,6 @@
             android:name=".ui.settings.account.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.MainActivityNotTaken"
-            android:exported="false" />
-        <activity
             android:name=".ui.welcome.WelcomeActivity"
             android:exported="false" />
         <activity
