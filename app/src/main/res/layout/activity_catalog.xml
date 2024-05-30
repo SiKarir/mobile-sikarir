@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundTint"
     tools:context=".ui.catalog.CatalogActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorAnimationMode="elastic"
-        android:background="@color/purple_primary"
+        android:background="?attr/backgroundColor"
         app:tabTextColor="@color/white"
         app:tabIndicatorColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +32,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        app:backgroundTint="@color/purple_primary"
+        app:backgroundTint="?attr/cardBackgroundColor"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:itemActiveIndicatorStyle="@color/white"
