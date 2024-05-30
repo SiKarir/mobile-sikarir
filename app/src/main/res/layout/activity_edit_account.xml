@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@tools:sample/avatars"/>
+        android:src="@color/yellow_primary"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name_layout"
