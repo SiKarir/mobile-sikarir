@@ -11,6 +11,7 @@ import com.c241ps294.sikarir.SectionsPagerAdapter
 import com.c241ps294.sikarir.databinding.ActivityCatalogBinding
 import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
+import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -47,6 +48,11 @@ class CatalogActivity : AppCompatActivity() {
                 }
                 R.id.quiz_page -> {
                     val intent = Intent(this, QuizStarterActivity::class.java)
+                    startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
+                    true
+                }
+                R.id.settings_page -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }
