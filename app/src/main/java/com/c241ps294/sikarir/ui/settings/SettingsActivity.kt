@@ -26,8 +26,6 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
 
-
-
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.settings_page
 
@@ -68,7 +66,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         setContentView(binding.root)
-
 
         val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
