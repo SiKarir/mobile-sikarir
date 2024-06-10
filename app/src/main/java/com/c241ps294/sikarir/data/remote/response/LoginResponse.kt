@@ -23,7 +23,7 @@ data class LoginResult(
     @field:SerializedName("name")
     val name: String,
 
-    @field:SerializedName("token")
+    @field:SerializedName("isTakenQuiz")
     val isTakenQuiz: Boolean,
 
     @field:SerializedName("token")
