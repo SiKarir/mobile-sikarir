@@ -4,9 +4,12 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ViewSwitcher
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityMainBinding
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
@@ -18,11 +21,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewSwitcher: ViewSwitcher
-    private val isQuizTaken = true
+    private var isQuizTaken: Boolean = true
+    private val authenticationViewModel by viewModels<AuthenticationViewModel> {
+        AuthenticationViewModelFactory.getInstance(context = this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        authenticationViewModel.getSession().observe(this) {
+            if (!it.isLogin) {
+                val intent = Intent(this, WelcomeActivity::class.java)
+                startActivity(intent)
+            }
+            else {
+                isQuizTaken = it.isTakenQuiz
+            }
+        }
 
         viewSwitcher = binding.viewSwitcher
         if (isQuizTaken) {
