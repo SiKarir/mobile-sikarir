@@ -1,4 +1,13 @@
 package com.c241ps294.sikarir.data.remote.response
 
-class RegisterResponse {
-}
+import com.google.gson.annotations.SerializedName
+
+data class RegisterResponse(
+
+    @field:SerializedName("error")
+    val error: Boolean,
+
+    @field:SerializedName("message")
+    val message: String
+
+)
