@@ -13,7 +13,7 @@
     <string name="karir_logo">Karir.</string>
 
     <!-- HOME ACTIVITY -->
-    <string name="greetings_home">Selamat Pagi, Sulthan!</string>
+    <string name="greeting_template">Selamat pagi, %s!</string>
     <string name="rekomendasi_home_text">Rekomendasi Utama Karir</string>
     <string name="jurusan_text_home">Program Studi</string>
     <string name="button_lihat_semua">Lihat Semua</string>

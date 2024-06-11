@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/greetings_home"
+            android:text="@string/greeting_template"
             android:textColor="?attr/colorPrimary"
             android:textSize="20sp" />
 
