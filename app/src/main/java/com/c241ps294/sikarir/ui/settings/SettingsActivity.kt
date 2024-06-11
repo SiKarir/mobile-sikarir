@@ -69,7 +69,6 @@ class SettingsActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
         val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
