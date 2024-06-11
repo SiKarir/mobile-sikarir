@@ -25,8 +25,6 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
     private val _editAccount = MutableLiveData<EditAccountResponse>()
     val editAccount: LiveData<EditAccountResponse> = _editAccount
 
-    val username: LiveData<String> = userRepository.getSession().map { it.username }.asLiveData()
-
     suspend fun editAccount(username: String, name: String, email: String, password: String){
         _isLoading.value = true
         val editAccountRequest = EditAccountRequest(username, name, email, password)
