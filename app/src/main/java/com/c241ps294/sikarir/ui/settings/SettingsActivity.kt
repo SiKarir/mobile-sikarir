@@ -8,6 +8,7 @@ import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivitySettingsBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
@@ -17,6 +18,8 @@ import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.ui.settings.account.AccountActivity
 import com.c241ps294.sikarir.ui.settings.account.EditAccountActivity
+import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModel
+import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -78,14 +81,34 @@ class SettingsActivity : AppCompatActivity() {
 
         val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
-        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            if (isChecked) {
+        val pref = SettingPreferences.getInstance(application.dataStore)
+
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
+            ThemeViewModel::class.java
+        )
+
+//        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+//            if (isChecked) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                switchTheme.isChecked = true
+//                themeViewModel.saveThemeSetting(true)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                switchTheme.isChecked = false
+//                themeViewModel.saveThemeSetting(false)
+//            }
+//        }
+        themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 switchTheme.isChecked = false
             }
+        }
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            themeViewModel.saveThemeSetting(isChecked)
         }
     }
 

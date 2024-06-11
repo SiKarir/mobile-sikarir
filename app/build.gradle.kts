@@ -79,6 +79,13 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.room:room-paging:2.4.3")
 
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 

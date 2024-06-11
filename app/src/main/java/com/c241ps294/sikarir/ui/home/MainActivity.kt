@@ -6,13 +6,19 @@ import android.os.Bundle
 import android.widget.ViewSwitcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityMainBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
+import com.c241ps294.sikarir.ui.settings.SettingPreferences
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
+import com.c241ps294.sikarir.ui.settings.dataStore
+import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModel
+import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
@@ -77,6 +83,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLihatSemua.setOnClickListener{ navToCatalog() }
         setContentView(binding.root)
+
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
+            ThemeViewModel::class.java
+        )
+        themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
     private fun setGreeting(name: String) {
