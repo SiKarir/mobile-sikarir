@@ -15,6 +15,7 @@ import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 isQuizTaken = it.isTakenQuiz
+                setGreeting(it.name)
             }
         }
 
@@ -75,6 +77,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLihatSemua.setOnClickListener{ navToCatalog() }
         setContentView(binding.root)
+    }
+
+    private fun setGreeting(name: String) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val greeting = when {
+            hour in 0..11 -> "Selamat Pagi, %s!"
+            hour in 12..15 -> "Selamat Siang, %s!"
+            hour in 16..18 -> "Selamat Sore, %s!"
+            else -> "Selamat Malam, %s!"
+        }
+        binding.tvGreeting.text = String.format(greeting, name)
     }
 
     private fun navToCatalog() {
