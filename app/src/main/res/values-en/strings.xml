@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name">SiKarir</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- MENU -->
+    <string name="home_menu">Home</string>
+    <string name="catalog_menu">Catalog</string>
+    <string name="quiz_menu">Quiz</string>
+    <string name="settings_menu">Settings</string>
+
+    <!-- LOGO -->
+    <string name="si_logo">Si</string>
+    <string name="karir_logo">Karir.</string>
+
+    <!-- HOME ACTIVITY -->
+    <string name="greeting_template">Good Morning, %s!</string>
+    <string name="rekomendasi_home_text">Main Career Recommendations</string>
+    <string name="jurusan_text_home">Major</string>
+    <string name="button_lihat_semua">See More</string>
+    <string name="description_career_card">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi</string>
+
+    <!-- WELCOME ACTIVITY -->
+    <string name="title_welcome">Welcome!</string>
+    <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
+    <string name="button_welcome">Continue</string>
+
+    <!-- LOGIN FRAGMENT -->
+    <string name="title_login">Welcome Back!</string>
+    <string name="subtitle_login">Log back in to your account!</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_question">Don\'t have an account yet?</string>
+    <string name="register_button_text">Register</string>
+    <string name="button_login">Log in</string>
+    <string name="login_username_hint">Username</string>
+
+    <!-- REGISTER FRAGMENT -->
+    <string name="title_register">Welcome!</string>
+    <string name="subtitle_register">Register your account</string>
+    <string name="login_button_text">Login</string>
+    <string name="register_question">Already have an account?</string>
+    <string name="button_register">Register</string>
+    <string name="register_name_hint">Name</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Password</string>
+    <string name="register_username_hint">Username</string>
+
+    <!-- ITEM_MAJOR -->
+    <string name="title_jurusan_card">Major</string>
+    <string name="title_university_card">University</string>
+    <string name="answer_quiz_card">Answer</string>
+    <string name="tab_text_1">Career</string>
+    <string name="tab_text_2">Major</string>
+
+    <!-- ITEM_CAREER -->
+    <string name="title_career_card">Software Engineering</string>
+    <string name="arrow_description">Arrow right</string>
+
+    <!-- CAREER FRAGMENT -->
+    <string name="rekomendasi_karir_text">Your Career Recommendation</string>
+
+    <!-- MAJOR FRAGMENT -->
+    <string name="title_major_card">S1 Sistem Informasi</string>
+    <string name="rekomendasi_major_text">Your Major Recommendation</string>
+
+    <!-- SEARCH BAR -->
+    <string name="searchbar_hint_karir">Enter career here</string>
+    <string name="searchbar_hint_major">Enter major here</string>
+    <string name="ambil_quiz_str">Take Quiz</string>
+    <string name="str_not_taken">No Recommendations yet, let\'s take your Quiz!</string>
+    <string name="img_not_taken">img_not_taken</string>
+
+    <!-- EDIT ACCOUNT -->
+    <string name="edit_account_button_text">Update</string>
+    <string name="edit_username_hint">Username</string>
+    <string name="edit_name_hint">Name</string>
+    <string name="edit_email_hint">Email</string>
+    <string name="edit_password_hint">Password</string>
+
+    <!-- ACCOUNT SETTINGS -->
+    <string name="quiz_history">Quiz History</string>
+    <string name="title_akun_setting">Account</string>
+    <string name="title_bahasa_setting">Language</string>
+    <string name="title_dark_mode_setting">Dark Mode</string>
+    <string name="title_logout_setting">Logout</string>
+
+    <string name="logout_title">Log Out</string>
+    <string name="confirm_logout">Are you sure you want to Log out?</string>
+    <string name="confirmed_logout">Yes</string>
+    <string name="not_logout">No</string>
+    <string name="selamat_pagi_s">Good Morning, %s!</string>
+    <string name="selamat_siang_s">Good Afternoon, %s!</string>
+    <string name="selamat_sore_s">Good Evening, %s!</string>
+    <string name="selamat_malam_s">Good Night, %s!</string>
+    <string name="quiz_starter_title">Let\'s find out your career recommendation!</string>
+    <string name="quiz_starter_subtitle">Click on the start quiz button below</string>
+    <string name="start_btn_quiz">Start Quiz</string>
+
+</resources>

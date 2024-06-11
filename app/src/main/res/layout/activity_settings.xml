@@ -149,7 +149,7 @@
                 android:text="@string/title_bahasa_setting" />
 
             <ImageView
-                android:id="@+id/arrow_button"
+                android:id="@+id/arrow_button_bahasa"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginEnd="20dp"

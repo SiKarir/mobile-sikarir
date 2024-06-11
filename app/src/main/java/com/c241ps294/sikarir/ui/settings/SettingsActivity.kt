@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -73,6 +74,10 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.arrowButtonAkun.setOnClickListener {
             startActivity(Intent(this, AccountActivity::class.java))
+        }
+
+        binding.arrowButtonBahasa.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
 
         setContentView(binding.root)

@@ -101,10 +101,10 @@ class MainActivity : AppCompatActivity() {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val greeting = when {
-            hour in 0..11 -> "Selamat Pagi, %s!"
-            hour in 12..15 -> "Selamat Siang, %s!"
-            hour in 16..18 -> "Selamat Sore, %s!"
-            else -> "Selamat Malam, %s!"
+            hour in 0..11 -> getString(R.string.selamat_pagi_s)
+            hour in 12..15 -> getString(R.string.selamat_siang_s)
+            hour in 16..18 -> getString(R.string.selamat_sore_s)
+            else -> getString(R.string.selamat_malam_s)
         }
         binding.tvGreeting.text = String.format(greeting, name)
     }
