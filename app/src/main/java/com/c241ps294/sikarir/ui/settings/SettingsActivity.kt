@@ -36,8 +36,6 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
 
-
-
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.settings_page
 
@@ -83,21 +81,8 @@ class SettingsActivity : AppCompatActivity() {
 
         val pref = SettingPreferences.getInstance(application.dataStore)
 
-        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
-            ThemeViewModel::class.java
-        )
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref))[ThemeViewModel::class.java]
 
-//        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-//            if (isChecked) {
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//                switchTheme.isChecked = true
-//                themeViewModel.saveThemeSetting(true)
-//            } else {
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                switchTheme.isChecked = false
-//                themeViewModel.saveThemeSetting(false)
-//            }
-//        }
         themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
