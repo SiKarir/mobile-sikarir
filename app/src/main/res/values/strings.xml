@@ -83,4 +83,9 @@
     <string name="title_dark_mode_setting">Mode Gelap</string>
     <string name="title_logout_setting">Logout</string>
 
+    <string name="logout_title">Keluar</string>
+    <string name="confirm_logout">Apakah anda yakin ingin keluar?</string>
+    <string name="confirmed_logout">Yakin</string>
+    <string name="not_logout">Tidak</string>
+
 </resources>

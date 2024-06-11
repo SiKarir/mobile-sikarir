@@ -5,9 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivitySettingsBinding
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
@@ -21,6 +25,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var bottomNavigationView: BottomNavigationView
+    private val authenticationViewModel by viewModels<AuthenticationViewModel> {
+        AuthenticationViewModelFactory.getInstance(context = this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.arrowButtonLogout.setOnClickListener {
-            startActivity(Intent(this, WelcomeActivity::class.java))
+            logout()
         }
 
         binding.btnEditAccount.setOnClickListener {
@@ -78,5 +85,21 @@ class SettingsActivity : AppCompatActivity() {
                 switchTheme.isChecked = false
             }
         }
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.logout_title)
+        builder.setMessage(R.string.confirm_logout)
+        builder.setPositiveButton(R.string.confirmed_logout) { _, _ ->
+            authenticationViewModel.logout()
+            val intent = Intent(this, WelcomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        builder.setNegativeButton(R.string.not_logout) { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }
