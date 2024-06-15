@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/ll_buttons"
         tools:itemCount="5"
-        tools:listitem="@layout/item_likert_scale"
+        tools:listitem="@layout/item_answer_text"
         android:layout_margin="8dp"
         android:clipToPadding="false"
         android:paddingBottom="8dp"
