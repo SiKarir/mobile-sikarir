@@ -5,56 +5,70 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps294.sikarir.R
+import com.c241ps294.sikarir.data.database.CareerDatabase
+import com.c241ps294.sikarir.data.database.MajorDatabase
+import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
+import com.c241ps294.sikarir.data.repository.CareerRepository
+import com.c241ps294.sikarir.data.repository.MajorRepository
+import com.c241ps294.sikarir.databinding.FragmentCareerBinding
+import com.c241ps294.sikarir.databinding.FragmentMajorBinding
+import com.c241ps294.sikarir.ui.adapter.CareerListAdapter
+import com.c241ps294.sikarir.ui.adapter.MajorListAdapter
+import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModel
+import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModelFactory
+import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModel
+import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MajorFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MajorFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentMajorBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var majorRepository: MajorRepository
+
+    private lateinit var majorViewModel: MajorViewModel
+    private lateinit var majorListAdapter: MajorListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_major, container, false)
+    ): View {
+        _binding = FragmentMajorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MajorFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MajorFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        majorListAdapter = MajorListAdapter()
+
+        binding.rvMajor.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = majorListAdapter
+        }
+
+        val context = requireContext()
+        val apiService = ApiConfig.getApiService()
+        val database = MajorDatabase.getDatabase(context)
+        val majorRepository = MajorRepository(database, apiService)
+        val factory = MajorViewModelFactory(majorRepository)
+
+        majorViewModel = ViewModelProvider(this, factory).get(MajorViewModel::class.java)
+
+        getData()
+    }
+
+    private fun getData() {
+        majorViewModel.majors.observe(viewLifecycleOwner, Observer {
+            majorListAdapter.submitData(lifecycle, it)
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_career"
+        android:id="@+id/rv_major"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -55,5 +55,17 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:itemCount="20"
         tools:listitem="@layout/item_major_catalog" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchBar"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
