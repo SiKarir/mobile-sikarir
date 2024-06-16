@@ -17,18 +17,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHeight_percent="0.4">
 
-        <ImageView
-            android:id="@+id/ivQuizImage"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvQuizQuestions"
-            android:adjustViewBounds="false"
-            android:scaleType="fitCenter" />
-
         <TextView
             android:id="@+id/tvQuizQuestions"
             android:layout_width="0dp"
@@ -37,14 +25,13 @@
             android:fontFamily="@font/ubuntu_bold"
             android:text="Siapakah Presiden RI Ke-1?"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ivQuizImage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOptions"
@@ -55,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/ll_buttons"
         tools:itemCount="5"
-        tools:listitem="@layout/item_answer_image"
+        tools:listitem="@layout/item_answer_text"
         android:layout_margin="8dp"
         android:clipToPadding="false"
         android:paddingBottom="8dp"

@@ -40,9 +40,6 @@
             android:name=".ui.welcome.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quiz.questions.QuizQuestionsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.quiz.result.QuizResultActivity"
             android:exported="false" />
         <activity
