@@ -56,7 +56,7 @@ class MajorFragment : Fragment() {
         val majorRepository = MajorRepository(database, apiService)
         val factory = MajorViewModelFactory(majorRepository)
 
-        majorViewModel = ViewModelProvider(this, factory).get(MajorViewModel::class.java)
+        majorViewModel = ViewModelProvider(this, factory)[MajorViewModel::class.java]
 
         getData()
     }

@@ -8,11 +8,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityMainBinding
+import com.c241ps294.sikarir.ui.adapter.MajorListAdapter
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
+import com.c241ps294.sikarir.ui.home.viewmodel.MainViewModel
+import com.c241ps294.sikarir.ui.home.viewmodel.MainViewModelFactory
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.ui.settings.SettingPreferences
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
@@ -29,13 +33,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewSwitcher: ViewSwitcher
     private var isQuizTaken: Boolean = true
+    private lateinit var majorListAdapter: MajorListAdapter
+
     private val authenticationViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(context = this)
+    }
+
+    private val mainViewModel by viewModels<MainViewModel> {
+        MainViewModelFactory.getInstance(context = this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        majorListAdapter = MajorListAdapter()
+
+        binding.rvMajor.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = majorListAdapter
+        }
 
         authenticationViewModel.getSession().observe(this) {
             if (!it.isLogin) {
@@ -45,6 +62,9 @@ class MainActivity : AppCompatActivity() {
             else {
                 isQuizTaken = it.isTakenQuiz
                 setGreeting(it.name)
+                mainViewModel.majors.observe(this) {
+                    majorListAdapter.submitData(lifecycle, it)
+                }
             }
         }
 
