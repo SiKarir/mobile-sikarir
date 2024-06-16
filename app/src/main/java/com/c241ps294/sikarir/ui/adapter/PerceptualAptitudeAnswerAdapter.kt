@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.local.quiz.LikertScale
+import com.c241ps294.sikarir.data.local.quiz.PerceptualAptitude
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
+class PerceptualAptitudeAnswerAdapter(private val question: PerceptualAptitude) : RecyclerView.Adapter<PerceptualAptitudeAnswerAdapter.ListViewHolder>() {
 
-    private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
+    private var options: List<String?> = listOf(question.option1, question.option2, question.option3, question.option4).filterNotNull()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemAnswerTextBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -29,8 +29,7 @@ class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView
 
         if (question.userAnswer == position.toString()) {
             holder.itemView.setBackgroundResource(R.drawable.option_selected)
-        }
-        else {
+        } else {
             holder.itemView.setBackgroundResource(R.drawable.option_default)
         }
     }

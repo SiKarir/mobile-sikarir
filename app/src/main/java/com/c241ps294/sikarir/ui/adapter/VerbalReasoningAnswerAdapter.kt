@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.local.quiz.LikertScale
+import com.c241ps294.sikarir.data.local.quiz.VerbalReasoning
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
+class VerbalReasoningAnswerAdapter(private val question: VerbalReasoning) : RecyclerView.Adapter<VerbalReasoningAnswerAdapter.ListViewHolder>() {
 
-    private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
+    private var options: List<String> = listOf(question.option1, question.option2, question.option3)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemAnswerTextBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)

@@ -1,13 +1,13 @@
 package com.c241ps294.sikarir.data.local.storage
 
 object AnswerStorage {
-    private val answers: MutableList<String> = mutableListOf()
+    private val answers: MutableMap<Int, Int> = mutableMapOf()
 
-    fun addAnswer(answer: String) {
-        answers.add(answer)
+    fun addOrUpdateAnswer(key: Int, answer: Int) {
+        answers[key] = answer
     }
 
-    fun getAnswers(): List<String> {
+    fun getAnswers(): Map<Int, Int> {
         return answers
     }
 

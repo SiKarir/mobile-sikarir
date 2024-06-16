@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.local.quiz.LikertScale
+import com.c241ps294.sikarir.data.local.quiz.NumericalAptitude
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
+class NumericalAptitudeAnswerAdapter(private val question: NumericalAptitude) : RecyclerView.Adapter<NumericalAptitudeAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 

@@ -8,7 +8,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityQuizStarterBinding
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.home.MainActivity
-import com.c241ps294.sikarir.ui.quiz.questions.QuizQuestionsActivity
+import com.c241ps294.sikarir.ui.quiz.questions.LikertScaleActivity
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -52,7 +52,7 @@ class QuizStarterActivity : AppCompatActivity() {
     }
 
     private fun takeAQuiz() {
-        val intent = Intent(this, QuizQuestionsActivity::class.java)
+        val intent = Intent(this, LikertScaleActivity::class.java)
         startActivity(intent)
     }
 }

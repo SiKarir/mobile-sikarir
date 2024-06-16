@@ -3,16 +3,17 @@ package com.c241ps294.sikarir.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.local.quiz.LikertScale
-import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
+import com.c241ps294.sikarir.data.local.quiz.AbstractReasoning
+import com.c241ps294.sikarir.databinding.ItemAnswerImageBinding
 
-class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
+class AbstractReasoningAnswerAdapter(private val question: AbstractReasoning) : RecyclerView.Adapter<AbstractReasoningAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemAnswerTextBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding = ItemAnswerImageBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ListViewHolder(binding)
     }
 
@@ -20,8 +21,7 @@ class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val option = options[position]
-        holder.binding.tvCenterText.text = option
-
+        Glide.with(holder.itemView).load(option).into(holder.binding.ivCenterImage)
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
@@ -35,5 +35,5 @@ class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView
         }
     }
 
-    class ListViewHolder(var binding: ItemAnswerTextBinding) : RecyclerView.ViewHolder(binding.root)
+    class ListViewHolder(var binding: ItemAnswerImageBinding) : RecyclerView.ViewHolder(binding.root)
 }
