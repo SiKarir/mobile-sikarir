@@ -47,76 +47,76 @@ class SpatialAptitudeActivity : AppCompatActivity() {
             option4 = "https://sikarir.github.io/image-quiz-storage/sa_3_d.png",
             option5 = "https://sikarir.github.io/image-quiz-storage/sa_3_e.png"
         ),
-        SpatialAptitude(
-            no = 64,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_4.png",
-            questionText = "Gambar mana yang menunjukkan objek yang sama dengan yang ditampilkan di atas?",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_4_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_4_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_4_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_4_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_4_e.png"
-        ),
-        SpatialAptitude(
-            no = 65,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_5.png",
-            questionText = "Kubus mana yang menunjukkan bentuk di atas dalam kondisi terlipat?",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_5_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_5_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_5_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_5_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_5_e.png"
-        ),
-        SpatialAptitude(
-            no = 66,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_6.png",
-            questionText = "Ketika digabungkan, bentuk mana yang akan tercipta. Perhatikan bahwa bagian yang ditandai A harus menempel dengan A yang lain, begitu juga dengan yang lain.",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_6_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_6_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_6_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_6_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_6_e.png"
-        ),
-        SpatialAptitude(
-            no = 67,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_7.png",
-            questionText = "Pilihlah kubus yang merupakan kubus yang sama dengan kubus di atas!",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_7_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_7_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_7_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_7_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_7_e.png"
-        ),
-        SpatialAptitude(
-            no = 68,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_8.png",
-            questionText = "Bentuk mana yang merupakan tampilan kubus tampak atas?",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_8_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_8_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_8_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_8_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_8_e.png"
-        ),
-        SpatialAptitude(
-            no = 69,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_9.png",
-            questionText = "Kubus mana yang menunjukkan bentuk di atas dalam kondisi terlipat?",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_9_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_9_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_9_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_9_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_9_e.png"
-        ),
-        SpatialAptitude(
-            no = 70,
-            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_10.png",
-            questionText = "Gambar manakah yang memiliki bentuk 3D yang sama dengan di atas, tetapi pada posisi yang berbeda?",
-            option1 = "https://sikarir.github.io/image-quiz-storage/sa_10_a.png",
-            option2 = "https://sikarir.github.io/image-quiz-storage/sa_10_b.png",
-            option3 = "https://sikarir.github.io/image-quiz-storage/sa_10_c.png",
-            option4 = "https://sikarir.github.io/image-quiz-storage/sa_10_d.png",
-            option5 = "https://sikarir.github.io/image-quiz-storage/sa_10_e.png"
-        )
+//        SpatialAptitude(
+//            no = 64,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_4.png",
+//            questionText = "Gambar mana yang menunjukkan objek yang sama dengan yang ditampilkan di atas?",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_4_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_4_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_4_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_4_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_4_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 65,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_5.png",
+//            questionText = "Kubus mana yang menunjukkan bentuk di atas dalam kondisi terlipat?",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_5_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_5_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_5_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_5_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_5_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 66,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_6.png",
+//            questionText = "Ketika digabungkan, bentuk mana yang akan tercipta. Perhatikan bahwa bagian yang ditandai A harus menempel dengan A yang lain, begitu juga dengan yang lain.",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_6_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_6_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_6_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_6_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_6_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 67,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_7.png",
+//            questionText = "Pilihlah kubus yang merupakan kubus yang sama dengan kubus di atas!",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_7_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_7_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_7_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_7_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_7_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 68,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_8.png",
+//            questionText = "Bentuk mana yang merupakan tampilan kubus tampak atas?",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_8_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_8_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_8_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_8_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_8_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 69,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_9.png",
+//            questionText = "Kubus mana yang menunjukkan bentuk di atas dalam kondisi terlipat?",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_9_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_9_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_9_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_9_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_9_e.png"
+//        ),
+//        SpatialAptitude(
+//            no = 70,
+//            imageUrl = "https://sikarir.github.io/image-quiz-storage/sa_10.png",
+//            questionText = "Gambar manakah yang memiliki bentuk 3D yang sama dengan di atas, tetapi pada posisi yang berbeda?",
+//            option1 = "https://sikarir.github.io/image-quiz-storage/sa_10_a.png",
+//            option2 = "https://sikarir.github.io/image-quiz-storage/sa_10_b.png",
+//            option3 = "https://sikarir.github.io/image-quiz-storage/sa_10_c.png",
+//            option4 = "https://sikarir.github.io/image-quiz-storage/sa_10_d.png",
+//            option5 = "https://sikarir.github.io/image-quiz-storage/sa_10_e.png"
+//        )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

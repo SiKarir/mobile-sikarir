@@ -34,6 +34,19 @@ class MajorRepository(private val majorDatabase: MajorDatabase, private val apiS
         return searchResults
     }
 
+    suspend fun get5RandomMajors() : LiveData<List<ListMajorItem>> {
+        val majors = MutableLiveData<List<ListMajorItem>>()
+        withContext(Dispatchers.IO) {
+            try {
+                val response = apiService.get5RandomMajors()
+                majors.postValue(response.listMajor?.filterNotNull())
+            } catch (e: Exception) {
+                majors.postValue(emptyList())
+            }
+        }
+        return majors
+    }
+
     companion object {
         private const val TAG = "MajorRepository"
 

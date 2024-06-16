@@ -51,4 +51,7 @@ interface ApiService {
 
     @GET("search/careers")
     suspend fun searchCareers(@Query("q") query: String): CareerResponse
+
+    @GET("catalog/majors/random")
+    suspend fun get5RandomMajors(): MajorResponse
 }

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 isQuizTaken = it.isTakenQuiz
                 setGreeting(it.name)
                 mainViewModel.majors.observe(this) {
-                    majorListAdapter.submitData(lifecycle, it)
+                    majorListAdapter.submitNonPaginatedList(it)
                 }
             }
         }

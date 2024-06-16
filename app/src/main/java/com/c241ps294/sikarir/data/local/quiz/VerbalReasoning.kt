@@ -22,15 +22,14 @@ data class VerbalReasoning (
         get() = _userAnswer
         set(value) {
             _userAnswer = value
-            AnswerStorage.addOrUpdateAnswer(no, convertAnswerToInt(value))
+            AnswerStorage.addOrUpdateAnswer(no, convertAnswerToOption(value))
         }
 
-    private fun convertAnswerToInt(answer: String): Int {
+    private fun convertAnswerToOption(answer: String): String {
         return when (answer) {
-            "0" -> 0
-            "1" -> 1
-            "2" -> 2
-            else -> -1
+            "0" -> "A"
+            "1" -> "B"
+            else -> "C"
         }
     }
 }
