@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,8 +23,6 @@ import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModelFactory
 class CareerFragment : Fragment() {
     private var _binding: FragmentCareerBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var careerRepository: CareerRepository
 
     private lateinit var careerViewModel: CareerViewModel
     private lateinit var careerListAdapter: CareerListAdapter
@@ -52,14 +52,35 @@ class CareerFragment : Fragment() {
         val factory = CareerViewModelFactory(careerRepository)
 
         careerViewModel = ViewModelProvider(this, factory).get(CareerViewModel::class.java)
-
-        getData()
+        setupSearch()
+        setupObservers()
     }
 
-    private fun getData() {
+    private fun setupObservers() {
         careerViewModel.careers.observe(viewLifecycleOwner, Observer {
             careerListAdapter.submitData(lifecycle, it)
         })
+
+        careerViewModel.searchResults.observe(viewLifecycleOwner, Observer {
+            careerListAdapter.submitNonPaginatedList(it)
+            binding.progressBar.visibility = View.GONE
+        })
+    }
+
+    private fun setupSearch() {
+        with(binding) {
+            searchView.setupWithSearchBar(searchBar)
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                searchBar.setText(searchView.text)
+                val tempInput = searchView.text.toString()
+                searchView.hide()
+                careerViewModel.searchCareers(tempInput)
+                false
+            }
+            searchView.editText.addTextChangedListener {
+                searchBar.setText(it.toString())
+            }
+        }
     }
 
     override fun onDestroyView() {

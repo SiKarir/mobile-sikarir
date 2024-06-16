@@ -1,6 +1,7 @@
 package com.c241ps294.sikarir.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -9,6 +10,8 @@ import com.c241ps294.sikarir.data.database.MajorDatabase
 import com.c241ps294.sikarir.data.paging.MajorPagingSource
 import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.data.remote.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MajorRepository(private val majorDatabase: MajorDatabase, private val apiService: ApiService) {
     fun getMajors(): LiveData<PagingData<ListMajorItem>>{
@@ -22,9 +25,13 @@ class MajorRepository(private val majorDatabase: MajorDatabase, private val apiS
         ).liveData
     }
 
-    suspend fun searchMajors(query: String): List<ListMajorItem> {
-        val response = apiService.searchMajors(query)
-        return response.listMajor?.filterNotNull() ?: emptyList()
+    suspend fun searchMajors(query: String): LiveData<List<ListMajorItem>> {
+        val searchResults = MutableLiveData<List<ListMajorItem>>()
+        withContext(Dispatchers.IO) {
+            val response = apiService.searchMajors(query)
+            searchResults.postValue(response.listMajor?.filterNotNull() ?: emptyList())
+        }
+        return searchResults
     }
 
     companion object {

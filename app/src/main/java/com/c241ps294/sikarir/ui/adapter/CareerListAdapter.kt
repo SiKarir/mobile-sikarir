@@ -12,13 +12,28 @@ import com.c241ps294.sikarir.ui.catalog.career.DetailCareerActivity
 
 class CareerListAdapter : PagingDataAdapter<ListCareerItem, CareerListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
+    private var nonPaginatedData: List<ListCareerItem>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemCareerCatalogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        val item = if (nonPaginatedData != null) {
+            nonPaginatedData!![position]
+        } else {
+            getItem(position)
+        }
+        item?.let { holder.bind(it) }
+    }
+
+    override fun getItemCount(): Int {
+        return nonPaginatedData?.size ?: super.getItemCount()
+    }
+
+    fun submitNonPaginatedList(data: List<ListCareerItem>) {
+        nonPaginatedData = data
+        notifyDataSetChanged()
     }
 
     class MyViewHolder(private val binding: ItemCareerCatalogBinding) : RecyclerView.ViewHolder(binding.root){

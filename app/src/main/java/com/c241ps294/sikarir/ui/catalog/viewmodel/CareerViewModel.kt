@@ -20,8 +20,7 @@ class CareerViewModel(private val careerRepository: CareerRepository) : ViewMode
 
     fun searchCareers(query: String) {
         viewModelScope.launch {
-            val results = careerRepository.searchCareers(query)
-            _searchResults.postValue(results)
+            _searchResults.value = careerRepository.searchCareers(query).value
         }
     }
 }

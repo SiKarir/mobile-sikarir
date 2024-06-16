@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +58,7 @@ class MajorFragment : Fragment() {
         val factory = MajorViewModelFactory(majorRepository)
 
         majorViewModel = ViewModelProvider(this, factory).get(MajorViewModel::class.java)
-
+        setupSearch()
         getData()
     }
 
@@ -65,6 +66,26 @@ class MajorFragment : Fragment() {
         majorViewModel.majors.observe(viewLifecycleOwner, Observer {
             majorListAdapter.submitData(lifecycle, it)
         })
+        majorViewModel.searchResults.observe(viewLifecycleOwner, Observer {
+            majorListAdapter.submitNonPaginatedList(it)
+            binding.progressBar.visibility = View.GONE
+        })
+    }
+
+    private fun setupSearch() {
+        with(binding) {
+            searchView.setupWithSearchBar(searchBar)
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                searchBar.setText(searchView.text)
+                val tempInput = searchView.text.toString()
+                searchView.hide()
+                majorViewModel.searchMajors(tempInput)
+                false
+            }
+            searchView.editText.addTextChangedListener {
+                searchBar.setText(it.toString())
+            }
+        }
     }
 
     override fun onDestroyView() {

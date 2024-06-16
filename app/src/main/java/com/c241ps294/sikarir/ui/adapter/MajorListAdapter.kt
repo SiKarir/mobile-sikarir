@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.c241ps294.sikarir.data.remote.response.ListCareerItem
 import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.databinding.ItemMajorCatalogBinding
 import com.c241ps294.sikarir.ui.catalog.major.DetailMajorActivity
 
 class MajorListAdapter : PagingDataAdapter<ListMajorItem, MajorListAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    private var nonPaginatedData: List<ListMajorItem>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemMajorCatalogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,7 +20,21 @@ class MajorListAdapter : PagingDataAdapter<ListMajorItem, MajorListAdapter.MyVie
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        val item = if (nonPaginatedData != null) {
+            nonPaginatedData!![position]
+        } else {
+            getItem(position)
+        }
+        item?.let { holder.bind(it) }
+    }
+
+    override fun getItemCount(): Int {
+        return nonPaginatedData?.size ?: super.getItemCount()
+    }
+
+    fun submitNonPaginatedList(data: List<ListMajorItem>) {
+        nonPaginatedData = data
+        notifyDataSetChanged()
     }
 
     class MyViewHolder(private val binding: ItemMajorCatalogBinding) : RecyclerView.ViewHolder(binding.root){
