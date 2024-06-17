@@ -8,7 +8,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.AbstractReasoning
 import com.c241ps294.sikarir.databinding.ItemAnswerImageBinding
 
-class AbstractReasoningAnswerAdapter(private val question: AbstractReasoning) : RecyclerView.Adapter<AbstractReasoningAnswerAdapter.ListViewHolder>() {
+class AbstractReasoningAnswerAdapter(private val question: AbstractReasoning, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<AbstractReasoningAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 
@@ -25,6 +25,7 @@ class AbstractReasoningAnswerAdapter(private val question: AbstractReasoning) : 
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {

@@ -7,7 +7,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.VerbalReasoning
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class VerbalReasoningAnswerAdapter(private val question: VerbalReasoning) : RecyclerView.Adapter<VerbalReasoningAnswerAdapter.ListViewHolder>() {
+class VerbalReasoningAnswerAdapter(private val question: VerbalReasoning, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<VerbalReasoningAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3)
 
@@ -25,6 +25,7 @@ class VerbalReasoningAnswerAdapter(private val question: VerbalReasoning) : Recy
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {

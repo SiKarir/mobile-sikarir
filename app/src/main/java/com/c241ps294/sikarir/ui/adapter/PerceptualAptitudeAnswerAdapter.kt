@@ -7,7 +7,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.PerceptualAptitude
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class PerceptualAptitudeAnswerAdapter(private val question: PerceptualAptitude) : RecyclerView.Adapter<PerceptualAptitudeAnswerAdapter.ListViewHolder>() {
+class PerceptualAptitudeAnswerAdapter(private val question: PerceptualAptitude, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<PerceptualAptitudeAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String?> = listOf(question.option1, question.option2, question.option3, question.option4).filterNotNull()
 
@@ -25,6 +25,7 @@ class PerceptualAptitudeAnswerAdapter(private val question: PerceptualAptitude) 
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.VerbalReasoning
 import com.c241ps294.sikarir.databinding.ActivityVerbalReasoningBinding
 import com.c241ps294.sikarir.ui.adapter.VerbalReasoningAnswerAdapter
@@ -215,10 +216,28 @@ class VerbalReasoningActivity : AppCompatActivity() {
             binding.info6.text = it.info6
             binding.info7.text = it.info7
             binding.info8.text = it.info8
+            binding.tvQuizPointer.text = getString(R.string.quiz_pointer).format(it.no)
             binding.tvQuizQuestions.text = it.questionText
-            adapter = VerbalReasoningAnswerAdapter(question)
+            adapter = VerbalReasoningAnswerAdapter(question){
+                checkIfAnswerSelected()
+            }
             binding.recyclerViewOptions.adapter = adapter
             binding.recyclerViewOptions.layoutManager = LinearLayoutManager(this)
         }
+        checkIfAnswerSelected()
+    }
+
+    private fun checkIfAnswerSelected() {
+        val question = questions[questionPointer]
+        if (question.userAnswer == "") {
+            enableNextButton(false)
+        } else {
+            enableNextButton(true)
+        }
+    }
+
+    private fun enableNextButton(enable: Boolean) {
+        binding.btnNext.isEnabled = enable
+        binding.btnNext.alpha = if (enable) 1.0f else 0.5f
     }
 }

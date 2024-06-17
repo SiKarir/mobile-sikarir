@@ -7,7 +7,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.NumericalAptitude
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class NumericalAptitudeAnswerAdapter(private val question: NumericalAptitude) : RecyclerView.Adapter<NumericalAptitudeAnswerAdapter.ListViewHolder>() {
+class NumericalAptitudeAnswerAdapter(private val question: NumericalAptitude, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<NumericalAptitudeAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 
@@ -25,6 +25,7 @@ class NumericalAptitudeAnswerAdapter(private val question: NumericalAptitude) : 
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {

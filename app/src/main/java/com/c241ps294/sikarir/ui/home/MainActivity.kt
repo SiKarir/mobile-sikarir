@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 isQuizTaken = it.isTakenQuiz
-                setGreeting(it.name)
+                setGreeting(it.username)
                 mainViewModel.majors.observe(this) {
                     majorListAdapter.submitNonPaginatedList(it)
                 }
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setGreeting(name: String) {
+    private fun setGreeting(username: String) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val greeting = when {
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             hour in 16..18 -> getString(R.string.selamat_sore_s)
             else -> getString(R.string.selamat_malam_s)
         }
-        binding.tvGreeting.text = String.format(greeting, name)
+        binding.tvGreeting.text = String.format(greeting, username)
     }
 
     private fun navToCatalog() {

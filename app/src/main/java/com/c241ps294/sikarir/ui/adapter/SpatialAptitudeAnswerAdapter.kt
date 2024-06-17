@@ -8,7 +8,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.SpatialAptitude
 import com.c241ps294.sikarir.databinding.ItemAnswerImageBinding
 
-class SpatialAptitudeAnswerAdapter(private val question: SpatialAptitude) : RecyclerView.Adapter<SpatialAptitudeAnswerAdapter.ListViewHolder>() {
+class SpatialAptitudeAnswerAdapter(private val question: SpatialAptitude, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<SpatialAptitudeAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 
@@ -25,6 +25,7 @@ class SpatialAptitudeAnswerAdapter(private val question: SpatialAptitude) : Recy
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {

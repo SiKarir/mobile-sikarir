@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.AbstractReasoning
 import com.c241ps294.sikarir.databinding.ActivityAbstractReasoningBinding
 import com.c241ps294.sikarir.ui.adapter.AbstractReasoningAnswerAdapter
@@ -160,9 +161,27 @@ class AbstractReasoningActivity : AppCompatActivity() {
         question.let {
             Glide.with(this).load(question.imageUrl).into(binding.ivQuizImage)
             binding.tvQuizQuestions.text = it.questionText
-            adapter = AbstractReasoningAnswerAdapter(question)
+            binding.tvQuizPointer.text = getString(R.string.quiz_pointer).format(it.no)
+            adapter = AbstractReasoningAnswerAdapter(question) {
+                checkIfAnswerSelected()
+            }
             binding.recyclerViewOptions.adapter = adapter
             binding.recyclerViewOptions.layoutManager = LinearLayoutManager(this)
         }
+        checkIfAnswerSelected()
+    }
+
+    private fun checkIfAnswerSelected() {
+        val question = questions[questionPointer]
+        if (question.userAnswer == "") {
+            enableNextButton(false)
+        } else {
+            enableNextButton(true)
+        }
+    }
+
+    private fun enableNextButton(enable: Boolean) {
+        binding.btnNext.isEnabled = enable
+        binding.btnNext.alpha = if (enable) 1.0f else 0.5f
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.LikertScale
 import com.c241ps294.sikarir.databinding.ActivityLikertScaleBinding
 import com.c241ps294.sikarir.ui.adapter.LikertScaleAnswerAdapter
@@ -111,10 +112,28 @@ class LikertScaleActivity : AppCompatActivity() {
 
         val question = questions[questionPointer]
         question.let {
+            binding.tvQuizPointer.text = getString(R.string.quiz_pointer).format(it.no)
             binding.tvQuizQuestions.text = it.questionText
-            adapter = LikertScaleAnswerAdapter(question)
+            adapter = LikertScaleAnswerAdapter(question) {
+                checkIfAnswerSelected()
+            }
             binding.recyclerViewOptions.adapter = adapter
             binding.recyclerViewOptions.layoutManager = LinearLayoutManager(this)
         }
+        checkIfAnswerSelected()
+    }
+
+    private fun checkIfAnswerSelected() {
+        val question = questions[questionPointer]
+        if (question.userAnswer == "") {
+            enableNextButton(false)
+        } else {
+            enableNextButton(true)
+        }
+    }
+
+    private fun enableNextButton(enable: Boolean) {
+        binding.btnNext.isEnabled = enable
+        binding.btnNext.alpha = if (enable) 1.0f else 0.5f
     }
 }

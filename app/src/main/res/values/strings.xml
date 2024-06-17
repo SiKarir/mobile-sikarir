@@ -91,8 +91,17 @@
     <string name="selamat_siang_s">Selamat Siang, %s!</string>
     <string name="selamat_sore_s">Selamat Sore, %s!</string>
     <string name="selamat_malam_s">Selamat Malam, %s!</string>
+
+    <!-- QUIZ QUESTIONS -->
+    <string name="quiz_vr">Verbal Reasoning</string>
+    <string name="quiz_sa">Spatial Aptitude</string>
+    <string name="quiz_pa">Perceptual Aptitude</string>
+    <string name="quiz_na">Numerical Aptitude</string>
+    <string name="quiz_ls">Likert Scale</string>
+    <string name="quiz_ar">Abstract Reasoning</string>
     <string name="quiz_starter_title">Yuk, cari tahu karir rekomendasi untukmu!</string>
     <string name="quiz_starter_subtitle">Silahkan tekan tombol mulai quiz dibawah</string>
     <string name="start_btn_quiz">Mulai Quiz</string>
+    <string name="quiz_pointer">%s/100</string>
 
 </resources>

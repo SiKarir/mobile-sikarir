@@ -7,7 +7,7 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.LikertScale
 import com.c241ps294.sikarir.databinding.ItemAnswerTextBinding
 
-class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
+class LikertScaleAnswerAdapter(private val question: LikertScale, private val onAnswerSelected: () -> Unit) : RecyclerView.Adapter<LikertScaleAnswerAdapter.ListViewHolder>() {
 
     private var options: List<String> = listOf(question.option1, question.option2, question.option3, question.option4, question.option5)
 
@@ -25,6 +25,7 @@ class LikertScaleAnswerAdapter(private val question: LikertScale) : RecyclerView
         holder.itemView.setOnClickListener {
             question.userAnswer = position.toString()
             notifyDataSetChanged()
+            onAnswerSelected()
         }
 
         if (question.userAnswer == position.toString()) {
