@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
             it?.let {
                 if (!it.error) {
                     Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                    authViewModel.saveSession(User(username = username, userId = it.loginResult.userId, name = it.loginResult.name, token = it.loginResult.token, isTakenQuiz = it.loginResult.isTakenQuiz))
+                    authViewModel.saveSession(User(username = username, userId = it.loginResult.userId, name = it.loginResult.name, token = it.loginResult.token, isTakenQuiz = it.loginResult.isTakenQuiz, photoUrl = it.loginResult.photoUrl, email = it.loginResult.email, password = password))
                     navigateToMainActivity()
                 }
             }

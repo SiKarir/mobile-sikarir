@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityMainBinding
 import com.c241ps294.sikarir.ui.adapter.MajorListAdapter
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 isQuizTaken = it.isTakenQuiz
                 setGreeting(it.username)
+                Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
                 mainViewModel.majors.observe(this) {
                     majorListAdapter.submitNonPaginatedList(it)
                 }

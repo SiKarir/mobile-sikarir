@@ -7,13 +7,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.databinding.ActivityEditAccountBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.c241ps294.sikarir.ui.settings.viewmodel.EditAccountViewModel
 import com.c241ps294.sikarir.ui.settings.viewmodel.EditAccountViewModelFactory
-import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.launch
 
 class EditAccountActivity : AppCompatActivity() {
@@ -31,29 +31,15 @@ class EditAccountActivity : AppCompatActivity() {
         binding = ActivityEditAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        editAccountViewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) {
-                showLoading(true)
-            } else {
-                showLoading(false)
-            }
-        }
-
         setupAction()
-
-        binding.inputUsernameRegister.isEnabled = false
-        authenticationViewModel.getSession().observe(this) {
-            val username = it.username
-            binding.inputUsernameRegister.setText(username)
-        }
     }
 
     private fun setupAction() {
         binding.editAccountButton.setOnClickListener {
-            val username = binding.inputUsernameRegister.text.toString()
-            val name = binding.inputNameRegister.text.toString()
-            val email = binding.inputEmailRegister.text.toString()
-            val password = binding.inputPasswordRegister.text.toString()
+            val username = binding.inputUsernameEdit.text.toString()
+            val name = binding.inputNameEdit.text.toString()
+            val email = binding.inputEmailEdit.text.toString()
+            val password = binding.inputPasswordEdit.text.toString()
 
             if (username.isNotEmpty() && name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
                 lifecycleScope.launch {
@@ -72,6 +58,22 @@ class EditAccountActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Gagal mengubah akun", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        editAccountViewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                showLoading(true)
+            } else {
+                showLoading(false)
+            }
+        }
+
+        authenticationViewModel.getSession().observe(this) {
+            Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
+            binding.inputUsernameEdit.setText(it.username)
+            binding.inputEmailEdit.setText(it.email)
+            binding.inputNameEdit.setText(it.name)
+            binding.inputPasswordEdit.setText(it.password)
         }
     }
 

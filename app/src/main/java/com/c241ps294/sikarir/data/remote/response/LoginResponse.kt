@@ -23,8 +23,14 @@ data class LoginResult(
     @field:SerializedName("name")
     val name: String,
 
+    @field:SerializedName("email")
+    val email: String,
+
     @field:SerializedName("isTakenQuiz")
     val isTakenQuiz: Boolean,
+
+    @field:SerializedName("photoUrl")
+    val photoUrl: String,
 
     @field:SerializedName("token")
     val token: String

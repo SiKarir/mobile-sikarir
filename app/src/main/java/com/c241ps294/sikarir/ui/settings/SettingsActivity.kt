@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivitySettingsBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
@@ -78,6 +79,12 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.arrowButtonBahasa.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+
+        authenticationViewModel.getSession().observe(this) {
+            Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
+            binding.tvNameAccount.text = it.name
+            binding.tvEmailAccount.text = it.email
         }
 
         setContentView(binding.root)
