@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AuthenticationViewModel (private val userRepository: UserRepository) : ViewModel() {
+class AuthenticationViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _loginUser = MutableLiveData<LoginResponse>()
     val loginUser: LiveData<LoginResponse> = _loginUser
@@ -29,47 +29,53 @@ class AuthenticationViewModel (private val userRepository: UserRepository) : Vie
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun login (username: String, password: String) {
+    private val _errorMessageLogin = MutableLiveData<String>()
+    val errorMessageLogin: LiveData<String> = _errorMessageLogin
+
+    private val _errorMessageRegister = MutableLiveData<String>()
+    val errorMessageRegister: LiveData<String> = _errorMessageRegister
+
+    fun login(username: String, password: String) {
         _isLoading.value = true
         val loginRequest = LoginRequest(username, password)
         val client = ApiConfig.getApiService().login(loginRequest)
         client.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(
-                call: Call<LoginResponse>,
-                response: Response<LoginResponse>
-            ) {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _loginUser.value = response.body()
                 } else {
+                    _errorMessageLogin.value = "Login failed: ${response.message()}"
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 _isLoading.value = false
+                _errorMessageLogin.value = "Login failed: ${t.message}"
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
     }
 
-    fun register (username: String, name: String, email: String, password: String) {
+    fun register(username: String, name: String, email: String, password: String) {
         _isLoading.value = true
         val registerRequest = RegisterRequest(username, name, email, password)
         val client = ApiConfig.getApiService().register(registerRequest)
         client.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(
-                call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _registerUser.value = response.body()
                 } else {
+                    _errorMessageRegister.value = "Register failed: ${response.message()}"
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 _isLoading.value = false
+                _errorMessageRegister.value = "Register failed: ${t.message}"
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
@@ -81,7 +87,7 @@ class AuthenticationViewModel (private val userRepository: UserRepository) : Vie
         }
     }
 
-    fun getSession() : LiveData<User> {
+    fun getSession(): LiveData<User> {
         return userRepository.getSession().asLiveData()
     }
 
@@ -91,7 +97,7 @@ class AuthenticationViewModel (private val userRepository: UserRepository) : Vie
         }
     }
 
-    companion object{
+    companion object {
         private const val TAG = "AuthenticationViewModel"
     }
 }

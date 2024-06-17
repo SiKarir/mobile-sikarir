@@ -24,6 +24,8 @@ class LoginFragment : Fragment() {
     private val authViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(requireActivity())
     }
+    private lateinit var username: String
+    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,19 +37,13 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        authViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-
         setupAction()
     }
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            val username = binding.inputUsernameLogin.text.toString()
-            val password = binding.inputPasswordLogin.text.toString()
-
+            username = binding.inputUsernameLogin.text.toString()
+            password = binding.inputPasswordLogin.text.toString()
             if (TextUtils.isEmpty(username)) {
                 binding.inputUsernameLogin.error = "Field must be filled"
             } else if (TextUtils.isEmpty(password)) {
@@ -56,24 +52,32 @@ class LoginFragment : Fragment() {
                 binding.inputPasswordLogin.requestFocus()
             } else {
                 authViewModel.login(username, password)
-                authViewModel.loginUser.observe(viewLifecycleOwner) {
-                    if (!it.error) {
-                        Toast.makeText(this.context, "Login successful", Toast.LENGTH_SHORT).show()
-                    }
-                    else {
-                        Toast.makeText(this.context, "Login failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                authViewModel.loginUser.observe(viewLifecycleOwner) {
+            }
+        }
+
+        authViewModel.loginUser.observe(viewLifecycleOwner) {
+            it?.let {
+                if (!it.error) {
+                    Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
                     authViewModel.saveSession(User(username = username, userId = it.loginResult.userId, name = it.loginResult.name, token = it.loginResult.token, isTakenQuiz = it.loginResult.isTakenQuiz))
+                    navigateToMainActivity()
                 }
+            }
+        }
+
+        authViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
+        authViewModel.errorMessageLogin.observe(viewLifecycleOwner) {
+            it?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
             }
         }
 
         authViewModel.getSession().observe(viewLifecycleOwner) {
             if (it.isLogin) {
-                val intent = Intent(requireActivity(), MainActivity::class.java)
-                startActivity(intent)
+                navigateToMainActivity()
             }
         }
 
@@ -87,5 +91,10 @@ class LoginFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
     }
 }

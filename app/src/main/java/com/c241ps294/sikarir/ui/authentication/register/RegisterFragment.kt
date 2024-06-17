@@ -20,6 +20,10 @@ class RegisterFragment : Fragment() {
     private val authViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(requireActivity())
     }
+    private lateinit var username: String
+    private lateinit var name: String
+    private lateinit var email: String
+    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +35,6 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        authViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-
         setupAction()
     }
 
@@ -47,10 +46,10 @@ class RegisterFragment : Fragment() {
             }
         }
         binding.registerButton.setOnClickListener {
-            val username = binding.inputUsernameRegister.text.toString()
-            val name = binding.inputNameRegister.text.toString()
-            val email = binding.inputEmailRegister.text.toString()
-            val password = binding.inputPasswordRegister.text.toString()
+            username = binding.inputUsernameRegister.text.toString()
+            name = binding.inputNameRegister.text.toString()
+            email = binding.inputEmailRegister.text.toString()
+            password = binding.inputPasswordRegister.text.toString()
 
             if (TextUtils.isEmpty(email)) {
                 binding.inputEmailRegister.error = "Field must be filled"
@@ -64,19 +63,29 @@ class RegisterFragment : Fragment() {
                 binding.inputPasswordRegister.requestFocus()
             } else {
                 authViewModel.register(username, name, email, password)
-                authViewModel.registerUser.observe(viewLifecycleOwner) {
-                    if (!it.error) {
-                        Toast.makeText(this.context, "Register successful", Toast.LENGTH_SHORT).show()
-                        parentFragmentManager.beginTransaction().apply {
-                            replace(R.id.authentication_container, LoginFragment(), LoginFragment::class.java.simpleName)
-                            commit()
-                        }
-                    }
-                    else {
-                        Toast.makeText(this.context, "Register failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        authViewModel.registerUser.observe(viewLifecycleOwner) {
+            it?.let {
+                if (!it.error) {
+                    Toast.makeText(this.context, "Register successful", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.beginTransaction().apply {
+                        replace(R.id.authentication_container, LoginFragment(), LoginFragment::class.java.simpleName)
+                        commit()
                     }
                 }
             }
+        }
+
+        authViewModel.errorMessageRegister.observe(viewLifecycleOwner) {
+            it?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        authViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
         }
     }
 
