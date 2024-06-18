@@ -15,8 +15,12 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.database.CareerDatabase
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
 import com.c241ps294.sikarir.data.repository.CareerRepository
+import com.c241ps294.sikarir.data.repository.QuizRepository
 import com.c241ps294.sikarir.databinding.FragmentCareerBinding
 import com.c241ps294.sikarir.ui.adapter.CareerListAdapter
+import com.c241ps294.sikarir.ui.adapter.RecommendedCareerAdapter
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModel
 import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModelFactory
 
@@ -26,6 +30,10 @@ class CareerFragment : Fragment() {
 
     private lateinit var careerViewModel: CareerViewModel
     private lateinit var careerListAdapter: CareerListAdapter
+    private lateinit var recommendedCareerAdapter: RecommendedCareerAdapter
+    private val authenticationViewModel by viewModels<AuthenticationViewModel> {
+        AuthenticationViewModelFactory.getInstance(context = requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,21 +47,40 @@ class CareerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         careerListAdapter = CareerListAdapter()
+        recommendedCareerAdapter = RecommendedCareerAdapter()
 
         binding.rvCareer.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = careerListAdapter
         }
 
+        binding.rvCareerRecommendation.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = recommendedCareerAdapter
+        }
+
         val context = requireContext()
         val apiService = ApiConfig.getApiService()
         val database = CareerDatabase.getDatabase(context)
         val careerRepository = CareerRepository(database, apiService)
-        val factory = CareerViewModelFactory(careerRepository)
+        val quizRepository = QuizRepository(apiService)
+        val factory = CareerViewModelFactory(careerRepository, quizRepository)
 
         careerViewModel = ViewModelProvider(this, factory).get(CareerViewModel::class.java)
         setupSearch()
         setupObservers()
+
+        authenticationViewModel.getSession().observe(viewLifecycleOwner) { session ->
+                if (!session.isTakenQuiz) {
+                    binding.quizLayout.visibility = View.VISIBLE
+                    binding.rvCareerRecommendation.visibility = View.GONE
+                } else {
+                    binding.quizLayout.visibility = View.GONE
+                    binding.rvCareerRecommendation.visibility = View.VISIBLE
+                    careerViewModel.getQuizHistory(session.token)
+                }
+
+        }
     }
 
     private fun setupObservers() {
@@ -64,6 +91,13 @@ class CareerFragment : Fragment() {
         careerViewModel.searchResults.observe(viewLifecycleOwner, Observer {
             careerListAdapter.submitNonPaginatedList(it)
             binding.progressBar.visibility = View.GONE
+        })
+
+        careerViewModel.quizzes.observe(viewLifecycleOwner, Observer { quizzes ->
+            if (quizzes.isNotEmpty()) {
+                val latestQuiz = quizzes.last()
+                recommendedCareerAdapter.submitList(latestQuiz.recommendation)
+            }
         })
     }
 
