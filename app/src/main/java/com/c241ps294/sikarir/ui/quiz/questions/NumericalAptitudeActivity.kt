@@ -45,69 +45,69 @@ class NumericalAptitudeActivity : AppCompatActivity() {
             option4 = "178 m2",
             option5 = "192 m2"
         ),
-//        NumericalAptitude(
-//            no = 54,
-//            questionText = "Sebuah wadah berbentuk silinder diisi air 1/3-nya, lalu wadah tersebut ditambah air sebanyak 3 liter sehingga isinya kini menjadi 1/2-nya. Berapa kapasitas wadah tersebut?",
-//            option1 = "25 liter",
-//            option2 = "18 liter",
-//            option3 = "20 liter",
-//            option4 = "22 liter",
-//            option5 = "24 liter"
-//        ),
-//        NumericalAptitude(
-//            no = 55,
-//            questionText = "Jika x rupiah dibagi rata kepada n orang, setiap orang akan memperoleh bagian Rp180.000,00. Jika dua orang lagi bergabung pada kelompok itu dengan jumlah uang yang sama, setiap orang akan memperoleh Rp150.000,00. Berapa rupiah uang itu?",
-//            option1 = "Rp1.700.000,00",
-//            option2 = "Rp1.750.000,00",
-//            option3 = "Rp1.800.000,00",
-//            option4 = "Rp1.850.000,00",
-//            option5 = "Rp1.900.000,00"
-//        ),
-//        NumericalAptitude(
-//            no = 56,
-//            questionText = "Jika x = 1/60 dan y = 60%, maka",
-//            option1 = "x > y",
-//            option2 = "x < y",
-//            option3 = "x = y",
-//            option4 = "x dan y tidak dapat ditentukan",
-//            option5 = "x2 > y"
-//        ),
-//        NumericalAptitude(
-//            no = 57,
-//            questionText = "Jika a – b = 50 dan a/b = 2/4, berapakah b – a?",
-//            option1 = "-150",
-//            option2 = "-320",
-//            option3 = "-450",
-//            option4 = "-125",
-//            option5 = "-50"
-//        ),
-//        NumericalAptitude(
-//            no = 58,
-//            questionText = "11 x 9 : 99 – 0 = …",
-//            option1 = "0",
-//            option2 = "1",
-//            option3 = "2",
-//            option4 = "3",
-//            option5 = "4"
-//        ),
-//        NumericalAptitude(
-//            no = 59,
-//            questionText = "9 x 2 x 7 – 65 – 40 = …",
-//            option1 = "13.230",
-//            option2 = "-13.230",
-//            option3 = "21",
-//            option4 = "231",
-//            option5 = "101"
-//        ),
-//        NumericalAptitude(
-//            no = 60,
-//            questionText = "455 x 45 : 455 – 3 = …",
-//            option1 = "-3",
-//            option2 = "42",
-//            option3 = "45",
-//            option4 = "55",
-//            option5 = "65"
-//        )
+        NumericalAptitude(
+            no = 54,
+            questionText = "Sebuah wadah berbentuk silinder diisi air 1/3-nya, lalu wadah tersebut ditambah air sebanyak 3 liter sehingga isinya kini menjadi 1/2-nya. Berapa kapasitas wadah tersebut?",
+            option1 = "25 liter",
+            option2 = "18 liter",
+            option3 = "20 liter",
+            option4 = "22 liter",
+            option5 = "24 liter"
+        ),
+        NumericalAptitude(
+            no = 55,
+            questionText = "Jika x rupiah dibagi rata kepada n orang, setiap orang akan memperoleh bagian Rp180.000,00. Jika dua orang lagi bergabung pada kelompok itu dengan jumlah uang yang sama, setiap orang akan memperoleh Rp150.000,00. Berapa rupiah uang itu?",
+            option1 = "Rp1.700.000,00",
+            option2 = "Rp1.750.000,00",
+            option3 = "Rp1.800.000,00",
+            option4 = "Rp1.850.000,00",
+            option5 = "Rp1.900.000,00"
+        ),
+        NumericalAptitude(
+            no = 56,
+            questionText = "Jika x = 1/60 dan y = 60%, maka",
+            option1 = "x > y",
+            option2 = "x < y",
+            option3 = "x = y",
+            option4 = "x dan y tidak dapat ditentukan",
+            option5 = "x2 > y"
+        ),
+        NumericalAptitude(
+            no = 57,
+            questionText = "Jika a – b = 50 dan a/b = 2/4, berapakah b – a?",
+            option1 = "-150",
+            option2 = "-320",
+            option3 = "-450",
+            option4 = "-125",
+            option5 = "-50"
+        ),
+        NumericalAptitude(
+            no = 58,
+            questionText = "11 x 9 : 99 – 0 = …",
+            option1 = "0",
+            option2 = "1",
+            option3 = "2",
+            option4 = "3",
+            option5 = "4"
+        ),
+        NumericalAptitude(
+            no = 59,
+            questionText = "9 x 2 x 7 – 65 – 40 = …",
+            option1 = "13.230",
+            option2 = "-13.230",
+            option3 = "21",
+            option4 = "231",
+            option5 = "101"
+        ),
+        NumericalAptitude(
+            no = 60,
+            questionText = "455 x 45 : 455 – 3 = …",
+            option1 = "-3",
+            option2 = "42",
+            option3 = "45",
+            option4 = "55",
+            option5 = "65"
+        )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

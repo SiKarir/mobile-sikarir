@@ -53,73 +53,73 @@ class PerceptualAptitudeActivity : AppCompatActivity() {
             option4 = "92",
             option5 = "78"
         ),
-//        PerceptualAptitude(
-//            no = 94,
-//            questionText = "Pilihlah isi titik-titik yang paling sesuai! 4. 78, 76, 73, …, 64, 58",
-//            option1 = "66",
-//            option2 = "69",
-//            option3 = "65",
-//            option4 = "56",
-//            option5 = "60"
-//        ),
-//        PerceptualAptitude(
-//            no = 95,
-//            questionText = "Pilihlah isi titik-titik yang paling sesuai! 5. 1, 8, 9, 16, 17, …, 25",
-//            option1 = "24",
-//            option2 = "28",
-//            option3 = "34",
-//            option4 = "36",
-//            option5 = "26"
-//        ),
-//        PerceptualAptitude(
-//            no = 96,
-//            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n GIRX --- GRIX",
-//            option1 = "S",
-//            option2 = "TS",
-//            option3 = null,
-//            option4 = null,
-//            option5 = null
-//        ),
-//        PerceptualAptitude(
-//            no = 97,
-//            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
-//                    "SERI --- SARI",
-//            option1 = "S",
-//            option2 = "TS",
-//            option3 = null,
-//            option4 = null,
-//            option5 = null
-//        ),
-//        PerceptualAptitude(
-//            no = 98,
-//            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
-//                    " MLTHSTS --- MLTHTST",
-//            option1 = "S",
-//            option2 = "TS",
-//            option3 = null,
-//            option4 = null,
-//            option5 = null
-//        ),
-//        PerceptualAptitude(
-//            no = 99,
-//            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
-//                    "  VIFTTWH --- VIFTTWH",
-//            option1 = "S",
-//            option2 = "TS",
-//            option3 = null,
-//            option4 = null,
-//            option5 = null
-//        ),
-//        PerceptualAptitude(
-//            no = 100,
-//            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
-//                    "  SPURSV --- SPURSV",
-//            option1 = "S",
-//            option2 = "TS",
-//            option3 = null,
-//            option4 = null,
-//            option5 = null
-//        )
+        PerceptualAptitude(
+            no = 94,
+            questionText = "Pilihlah isi titik-titik yang paling sesuai! 4. 78, 76, 73, …, 64, 58",
+            option1 = "66",
+            option2 = "69",
+            option3 = "65",
+            option4 = "56",
+            option5 = "60"
+        ),
+        PerceptualAptitude(
+            no = 95,
+            questionText = "Pilihlah isi titik-titik yang paling sesuai! 5. 1, 8, 9, 16, 17, …, 25",
+            option1 = "24",
+            option2 = "28",
+            option3 = "34",
+            option4 = "36",
+            option5 = "26"
+        ),
+        PerceptualAptitude(
+            no = 96,
+            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n GIRX --- GRIX",
+            option1 = "S",
+            option2 = "TS",
+            option3 = null,
+            option4 = null,
+            option5 = null
+        ),
+        PerceptualAptitude(
+            no = 97,
+            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
+                    "SERI --- SARI",
+            option1 = "S",
+            option2 = "TS",
+            option3 = null,
+            option4 = null,
+            option5 = null
+        ),
+        PerceptualAptitude(
+            no = 98,
+            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
+                    " MLTHSTS --- MLTHTST",
+            option1 = "S",
+            option2 = "TS",
+            option3 = null,
+            option4 = null,
+            option5 = null
+        ),
+        PerceptualAptitude(
+            no = 99,
+            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
+                    "  VIFTTWH --- VIFTTWH",
+            option1 = "S",
+            option2 = "TS",
+            option3 = null,
+            option4 = null,
+            option5 = null
+        ),
+        PerceptualAptitude(
+            no = 100,
+            questionText = "Cermati susunan di bawah ini, berilah tanda “S” jika kedua susunan merupakan susunan yang sama, dan tanda “TS” jika kedua susunannya tidak sama!\n" +
+                    "  SPURSV --- SPURSV",
+            option1 = "S",
+            option2 = "TS",
+            option3 = null,
+            option4 = null,
+            option5 = null
+        )
     )
 
     private val authenticationViewModel by viewModels<AuthenticationViewModel> {
