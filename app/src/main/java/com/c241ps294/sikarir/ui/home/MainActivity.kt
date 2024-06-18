@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewSwitcher: ViewSwitcher
-    private var isQuizTaken: Boolean = true
     private lateinit var majorListAdapter: MajorListAdapter
 
     private val authenticationViewModel by viewModels<AuthenticationViewModel> {
@@ -61,7 +60,18 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else {
-                isQuizTaken = it.isTakenQuiz
+                viewSwitcher = binding.viewSwitcher
+                if (!it.isTakenQuiz) {
+                    viewSwitcher.displayedChild = 1
+                } else {
+                    viewSwitcher.displayedChild = 0
+                    mainViewModel.getQuizHistory(it.token)
+                    mainViewModel.quizzes.observe(this) { quiz ->
+                        binding.tvTitle.text = quiz[quiz.size-1].recommendation[0].name
+                        binding.tvDescription.text = quiz[quiz.size-1].recommendation[0].description
+                    }
+                }
+
                 setGreeting(it.username)
                 Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
                 mainViewModel.majors.observe(this) {
@@ -70,12 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewSwitcher = binding.viewSwitcher
-        if (isQuizTaken) {
-            viewSwitcher.displayedChild = 1
-        } else {
-            viewSwitcher.displayedChild = 0;
-        }
+
 
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.home_page

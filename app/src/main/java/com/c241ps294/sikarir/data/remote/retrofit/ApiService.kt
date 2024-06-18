@@ -8,6 +8,8 @@ import com.c241ps294.sikarir.data.remote.response.CareerResponse
 import com.c241ps294.sikarir.data.remote.response.EditAccountResponse
 import com.c241ps294.sikarir.data.remote.response.LoginResponse
 import com.c241ps294.sikarir.data.remote.response.MajorResponse
+import com.c241ps294.sikarir.data.remote.response.QuizHistoryResponse
+import com.c241ps294.sikarir.data.remote.response.QuizResponse
 import com.c241ps294.sikarir.data.remote.response.RegisterResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -54,4 +56,15 @@ interface ApiService {
 
     @GET("catalog/majors/random")
     suspend fun get5RandomMajors(): MajorResponse
+
+    @POST("quiz")
+    suspend fun postQuiz (
+        @Header("Authorization") token: String,
+        @Body answerHashMap: HashMap<Int, String>
+    ): QuizResponse
+
+    @GET("quiz/history")
+    suspend fun getQuizHistory (
+        @Header("Authorization") token: String,
+    ): QuizHistoryResponse
 }

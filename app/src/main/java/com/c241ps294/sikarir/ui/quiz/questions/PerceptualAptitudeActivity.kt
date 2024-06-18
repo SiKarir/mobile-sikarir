@@ -4,15 +4,21 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.PerceptualAptitude
 import com.c241ps294.sikarir.data.local.storage.AnswerStorage
+import com.c241ps294.sikarir.data.preference.user.User
 import com.c241ps294.sikarir.databinding.ActivityPerceptualAptitudeBinding
 import com.c241ps294.sikarir.ui.adapter.PerceptualAptitudeAnswerAdapter
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
+import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.quiz.result.QuizResultActivity
+import com.c241ps294.sikarir.ui.quiz.viewmodel.QuizViewModel
+import com.c241ps294.sikarir.ui.quiz.viewmodel.QuizViewModelFactory
 
 class PerceptualAptitudeActivity : AppCompatActivity() {
 
@@ -115,10 +121,46 @@ class PerceptualAptitudeActivity : AppCompatActivity() {
 //            option5 = null
 //        )
     )
+
+    private val authenticationViewModel by viewModels<AuthenticationViewModel> {
+        AuthenticationViewModelFactory.getInstance(context = this)
+    }
+
+    private val quizViewModel by viewModels<QuizViewModel> {
+        QuizViewModelFactory.getInstance()
+    }
+
+    private lateinit var user: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPerceptualAptitudeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        authenticationViewModel.getSession().observe(this) {
+            user = it
+        }
+
+        quizViewModel.quizResponse.observe(this) { response ->
+            if (!response.error) {
+                AnswerStorage.clearAnswers()
+
+                val intent = Intent(this, QuizResultActivity::class.java)
+                startActivity(intent)
+
+                val updatedUser = user.copy(isTakenQuiz = true)
+                authenticationViewModel.saveSession(updatedUser)
+            }
+        }
+
+        quizViewModel.errorMessage.observe(this) {
+            it?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        quizViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
 
         bindViews()
         setUpEventListener()
@@ -130,9 +172,7 @@ class PerceptualAptitudeActivity : AppCompatActivity() {
                 questionPointer++
                 bindViews()
             } else {
-                Log.d("FINALANSWERS", AnswerStorage.getAnswers().toString())
-                val intent = Intent(this, QuizResultActivity::class.java)
-                startActivity(intent)
+                quizViewModel.postQuiz(user.token)
             }
         }
 
@@ -184,5 +224,9 @@ class PerceptualAptitudeActivity : AppCompatActivity() {
     private fun enableNextButton(enable: Boolean) {
         binding.btnNext.isEnabled = enable
         binding.btnNext.alpha = if (enable) 1.0f else 0.5f
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
