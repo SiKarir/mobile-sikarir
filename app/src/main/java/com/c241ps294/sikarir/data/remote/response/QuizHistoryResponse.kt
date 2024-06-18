@@ -15,8 +15,8 @@ data class QuizItem (
     @field:SerializedName("quizId")
     val quizId: String,
 
-    @field:SerializedName("quizDate")
-    val quizDate: String,
+    @field:SerializedName("date")
+    val date: String,
 
     @field:SerializedName("recommendation")
     val recommendation: List<ListCareerItem>,
