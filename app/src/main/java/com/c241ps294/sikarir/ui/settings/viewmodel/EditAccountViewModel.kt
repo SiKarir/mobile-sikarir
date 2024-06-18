@@ -4,16 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.c241ps294.sikarir.data.remote.request.EditAccountRequest
 import com.c241ps294.sikarir.data.remote.response.EditAccountResponse
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
 import com.c241ps294.sikarir.data.repository.UserRepository
-import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,12 +21,11 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
     private val _editAccount = MutableLiveData<EditAccountResponse>()
     val editAccount: LiveData<EditAccountResponse> = _editAccount
 
-    suspend fun editAccount(username: String, name: String, email: String, password: String){
+    suspend fun editAccount(username: RequestBody, name: RequestBody, email: RequestBody, password: RequestBody, file: MultipartBody.Part){
         _isLoading.value = true
-        val editAccountRequest = EditAccountRequest(username, name, email, password)
         val token = userRepository.getSession().first().token
         val authorization = "Bearer $token"
-        val client = ApiConfig.getApiService().editAccount(authorization, editAccountRequest)
+        val client = ApiConfig.getApiService().editAccount(authorization, username = username, name = name, email = email, password = password, file = file)
         client.enqueue(object : Callback<EditAccountResponse> {
             override fun onResponse(
                 call: Call<EditAccountResponse>,
@@ -40,12 +35,12 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
                 if (response.isSuccessful) {
                     _editAccount.value = response.body()
                 } else {
-                    Log.e(EditAccountViewModel.TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<EditAccountResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(EditAccountViewModel.TAG, "onFailure: ${t.message.toString()}")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
 

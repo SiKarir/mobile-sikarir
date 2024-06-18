@@ -1,10 +1,14 @@
 package com.c241ps294.sikarir.ui.settings.account
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -14,7 +18,13 @@ import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.c241ps294.sikarir.ui.settings.viewmodel.EditAccountViewModel
 import com.c241ps294.sikarir.ui.settings.viewmodel.EditAccountViewModelFactory
+import com.c241ps294.sikarir.utils.reduceFileImage
+import com.c241ps294.sikarir.utils.uriToFile
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class EditAccountActivity : AppCompatActivity() {
 
@@ -25,6 +35,7 @@ class EditAccountActivity : AppCompatActivity() {
     private val authenticationViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(context = this)
     }
+    private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +46,9 @@ class EditAccountActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.editAccountButton.setOnClickListener {
-            val username = binding.inputUsernameEdit.text.toString()
-            val name = binding.inputNameEdit.text.toString()
-            val email = binding.inputEmailEdit.text.toString()
-            val password = binding.inputPasswordEdit.text.toString()
+        binding.btnEditImage.setOnClickListener{ startGallery() }
 
-            if (username.isNotEmpty() && name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                lifecycleScope.launch {
-                    editAccountViewModel.editAccount(username, name, email, password)
-                }
-            } else {
-                Toast.makeText(this, "Field tidak boleh kosong", Toast.LENGTH_SHORT).show()
-            }
-        }
+        binding.editAccountButton.setOnClickListener { editAccount() }
 
         editAccountViewModel.editAccount.observe(this) { editAccountResponse ->
             if (editAccountResponse != null) {
@@ -81,4 +81,53 @@ class EditAccountActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            currentImageUri = uri
+            showImage()
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private fun showImage() {
+        currentImageUri?.let {
+            Log.d("Image URI", "showImage: $it")
+            binding.ivAvatarAccount.setImageURI(it)
+        }
+    }
+
+    private fun editAccount() {
+        val username = binding.inputUsernameEdit.text.toString()
+        val name = binding.inputNameEdit.text.toString()
+        val email = binding.inputEmailEdit.text.toString()
+        val password = binding.inputPasswordEdit.text.toString()
+
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, this).reduceFileImage()
+            Log.d("Image File", "showImage: ${imageFile.path}")
+            val description = "Ini adalah deksripsi gambar"
+            showLoading(true)
+
+            val usernameRequest = username.toRequestBody("text/plain".toMediaType())
+            val nameRequest = name.toRequestBody("text/plain".toMediaType())
+            val emailRequest = email.toRequestBody("text/plain".toMediaType())
+            val passwordRequest = password.toRequestBody("text/plain".toMediaType())
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            val multipartBody = MultipartBody.Part.createFormData(
+                "photo",
+                imageFile.name,
+                requestImageFile
+            )
+            lifecycleScope.launch {
+                editAccountViewModel.editAccount(usernameRequest,nameRequest,emailRequest,passwordRequest,multipartBody)
+            }
+        }
+    }
 }

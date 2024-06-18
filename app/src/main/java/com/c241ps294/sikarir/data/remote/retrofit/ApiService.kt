@@ -1,7 +1,6 @@
 package com.c241ps294.sikarir.data.remote.retrofit
 
 import retrofit2.http.Query
-import com.c241ps294.sikarir.data.remote.request.EditAccountRequest
 import com.c241ps294.sikarir.data.remote.request.LoginRequest
 import com.c241ps294.sikarir.data.remote.request.RegisterRequest
 import com.c241ps294.sikarir.data.remote.response.CareerResponse
@@ -11,12 +10,16 @@ import com.c241ps294.sikarir.data.remote.response.MajorResponse
 import com.c241ps294.sikarir.data.remote.response.QuizHistoryResponse
 import com.c241ps294.sikarir.data.remote.response.QuizResponse
 import com.c241ps294.sikarir.data.remote.response.RegisterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PUT
+import retrofit2.http.Part
 
 interface ApiService {
 
@@ -30,10 +33,15 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): Call<RegisterResponse>
 
+    @Multipart
     @PUT("edit-account")
     fun editAccount(
         @Header("Authorization") token: String,
-        @Body editAccountRequest: EditAccountRequest
+        @Part file: MultipartBody.Part,
+        @Part("name") name: RequestBody,
+        @Part("username") username: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("password") password: RequestBody,
     ): Call<EditAccountResponse>
 
     @GET("catalog/careers")

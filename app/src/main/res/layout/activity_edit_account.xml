@@ -18,6 +18,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@color/yellow_primary"/>
 
+    <ImageView
+        android:id="@+id/btnEditImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toTopOf="@id/input_name_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar_account"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar_account"
+        app:layout_constraintVertical_bias="2" />
+
     <com.c241ps294.sikarir.ui.customview.NameField
         android:id="@+id/input_name_edit"
         android:padding="16dp"
