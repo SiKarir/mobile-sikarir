@@ -3,6 +3,7 @@ package com.c241ps294.sikarir.ui.home
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ViewSwitcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -80,7 +81,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
+        mainViewModel.isLoading.observe(this) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
 
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.home_page

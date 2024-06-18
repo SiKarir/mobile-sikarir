@@ -18,21 +18,28 @@ class MainViewModel(private val majorRepository: MajorRepository, private val qu
     private val _quizzes = MutableLiveData<List<QuizItem>>()
     val quizzes: LiveData<List<QuizItem>> = _quizzes
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     init {
         fetch5RandomMajors()
     }
 
     private fun fetch5RandomMajors() {
         viewModelScope.launch {
+            _isLoading.value = true
             val data = majorRepository.get5RandomMajors()
             _majors.postValue(data.value)
+            _isLoading.value = false
         }
     }
 
     fun getQuizHistory(token: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             val data = quizRepository.getQuizHistory(token)
             _quizzes.postValue(data.value)
+            _isLoading.value = false
         }
     }
 }

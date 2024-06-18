@@ -20,9 +20,15 @@ class CareerViewModel(private val careerRepository: CareerRepository, private va
     private val _searchResults = MutableLiveData<List<ListCareerItem>>()
     val searchResults: LiveData<List<ListCareerItem>> get() = _searchResults
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+
     fun searchCareers(query: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             _searchResults.value = careerRepository.searchCareers(query).value
+            _isLoading.value = false
         }
     }
 
@@ -31,8 +37,10 @@ class CareerViewModel(private val careerRepository: CareerRepository, private va
 
     fun getQuizHistory(token: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             val data = quizRepository.getQuizHistory(token)
             _quizzes.postValue(data.value)
+            _isLoading.value = false
         }
     }
 }

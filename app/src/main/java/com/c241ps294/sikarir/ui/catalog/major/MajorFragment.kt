@@ -70,6 +70,10 @@ class MajorFragment : Fragment() {
             majorListAdapter.submitNonPaginatedList(it)
             binding.progressBar.visibility = View.GONE
         })
+
+        majorViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 
     private fun setupSearch() {

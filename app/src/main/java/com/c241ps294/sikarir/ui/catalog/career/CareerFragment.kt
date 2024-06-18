@@ -99,6 +99,10 @@ class CareerFragment : Fragment() {
                 recommendedCareerAdapter.submitList(latestQuiz.recommendation)
             }
         })
+
+        careerViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 
     private fun setupSearch() {
