@@ -2,7 +2,6 @@ package com.c241ps294.sikarir.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.data.remote.response.QuizItem
 import com.c241ps294.sikarir.data.remote.response.QuizResponse
 import com.c241ps294.sikarir.data.remote.retrofit.ApiService

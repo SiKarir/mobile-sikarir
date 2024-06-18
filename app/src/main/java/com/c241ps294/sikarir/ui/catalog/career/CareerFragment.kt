@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.database.CareerDatabase
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
 import com.c241ps294.sikarir.data.repository.CareerRepository

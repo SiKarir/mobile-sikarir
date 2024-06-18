@@ -9,18 +9,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.database.CareerDatabase
 import com.c241ps294.sikarir.data.database.MajorDatabase
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
-import com.c241ps294.sikarir.data.repository.CareerRepository
 import com.c241ps294.sikarir.data.repository.MajorRepository
-import com.c241ps294.sikarir.databinding.FragmentCareerBinding
 import com.c241ps294.sikarir.databinding.FragmentMajorBinding
-import com.c241ps294.sikarir.ui.adapter.CareerListAdapter
 import com.c241ps294.sikarir.ui.adapter.MajorListAdapter
-import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModel
-import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModel
 import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModelFactory
 

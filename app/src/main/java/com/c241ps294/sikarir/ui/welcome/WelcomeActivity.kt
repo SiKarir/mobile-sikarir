@@ -3,7 +3,6 @@ package com.c241ps294.sikarir.ui.welcome
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityWelcomeBinding
 import com.c241ps294.sikarir.ui.authentication.AuthenticationActivity
 

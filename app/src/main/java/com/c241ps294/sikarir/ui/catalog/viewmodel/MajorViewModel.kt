@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.c241ps294.sikarir.data.remote.response.ListCareerItem
 import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.data.repository.MajorRepository
 import kotlinx.coroutines.launch

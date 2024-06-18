@@ -10,7 +10,6 @@ import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.NumericalAptitude
 import com.c241ps294.sikarir.databinding.ActivityNumericalAptitudeBinding
 import com.c241ps294.sikarir.ui.adapter.NumericalAptitudeAnswerAdapter
-import com.c241ps294.sikarir.ui.quiz.result.QuizResultActivity
 
 class NumericalAptitudeActivity : AppCompatActivity() {
 

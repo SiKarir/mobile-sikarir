@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.c241ps294.sikarir.data.remote.response.ListCareerItem
-
 @Dao
 interface CareerDao {
 
