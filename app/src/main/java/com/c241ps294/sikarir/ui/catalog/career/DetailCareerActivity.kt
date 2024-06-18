@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.remote.response.ListCareerItem
-import com.c241ps294.sikarir.data.remote.response.ListJurusanTerkaitItem
+import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.databinding.ActivityDetailCareerBinding
 import com.c241ps294.sikarir.ui.adapter.RelatedMajorsAdapter
 import com.c241ps294.sikarir.ui.home.MainActivity
@@ -62,7 +62,7 @@ class DetailCareerActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRelatedMajorsRecyclerView(majors: List<ListJurusanTerkaitItem?>?) {
+    private fun setupRelatedMajorsRecyclerView(majors: List<ListMajorItem?>?) {
         majors?.filterNotNull()?.let {
             val adapter = RelatedMajorsAdapter(it)
             binding.rvMajor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

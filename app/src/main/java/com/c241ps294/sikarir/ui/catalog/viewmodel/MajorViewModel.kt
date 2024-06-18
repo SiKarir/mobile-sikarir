@@ -19,9 +19,14 @@ class MajorViewModel(private val majorRepository: MajorRepository) : ViewModel()
     private val _searchResults = MutableLiveData<List<ListMajorItem>>()
     val searchResults: LiveData<List<ListMajorItem>> get() = _searchResults
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun searchMajors(query: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             _searchResults.value = majorRepository.searchMajors(query).value
+            _isLoading.value = false
         }
     }
 }
