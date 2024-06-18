@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.c241ps294.sikarir.data.preference.user.User
 import com.c241ps294.sikarir.data.remote.response.EditAccountResponse
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
 import com.c241ps294.sikarir.data.repository.UserRepository
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -21,7 +24,7 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
     private val _editAccount = MutableLiveData<EditAccountResponse>()
     val editAccount: LiveData<EditAccountResponse> = _editAccount
 
-    suspend fun editAccount(username: RequestBody, name: RequestBody, email: RequestBody, password: RequestBody, file: MultipartBody.Part){
+    suspend fun editAccount(username: RequestBody, name: RequestBody, email: RequestBody, password: RequestBody, file: MultipartBody.Part?, user: User, usernameString: String, emailString: String, nameString: String, passwordString: String){
         _isLoading.value = true
         val token = userRepository.getSession().first().token
         val authorization = "Bearer $token"
@@ -34,6 +37,18 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _editAccount.value = response.body()
+                    response.body()?.user?.let {
+                        val updatedUser = user.copy(
+                            username = usernameString,
+                            name = nameString,
+                            email = emailString,
+                            password = passwordString,
+                            photoUrl = it.photoUrl
+                        )
+                        viewModelScope.launch {
+                            userRepository.saveSession(updatedUser)
+                        }
+                    }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -43,9 +58,8 @@ class EditAccountViewModel(private val userRepository: UserRepository) : ViewMod
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
 
-
-}
     companion object{
         private const val TAG = "EditAccountViewModel"
     }

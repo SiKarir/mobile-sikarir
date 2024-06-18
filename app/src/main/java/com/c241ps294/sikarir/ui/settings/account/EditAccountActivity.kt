@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.c241ps294.sikarir.data.preference.user.User
 import com.c241ps294.sikarir.databinding.ActivityEditAccountBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
@@ -36,19 +37,26 @@ class EditAccountActivity : AppCompatActivity() {
         AuthenticationViewModelFactory.getInstance(context = this)
     }
     private var currentImageUri: Uri? = null
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupAction()
     }
 
     private fun setupAction() {
         binding.btnEditImage.setOnClickListener{ startGallery() }
-
         binding.editAccountButton.setOnClickListener { editAccount() }
+        authenticationViewModel.getSession().observe(this) {
+            user = it
+            Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
+            binding.inputUsernameEdit.setText(it.username)
+            binding.inputEmailEdit.setText(it.email)
+            binding.inputNameEdit.setText(it.name)
+            binding.inputPasswordEdit.setText(it.password)
+        }
 
         editAccountViewModel.editAccount.observe(this) { editAccountResponse ->
             if (editAccountResponse != null) {
@@ -66,14 +74,6 @@ class EditAccountActivity : AppCompatActivity() {
             } else {
                 showLoading(false)
             }
-        }
-
-        authenticationViewModel.getSession().observe(this) {
-            Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
-            binding.inputUsernameEdit.setText(it.username)
-            binding.inputEmailEdit.setText(it.email)
-            binding.inputNameEdit.setText(it.name)
-            binding.inputPasswordEdit.setText(it.password)
         }
     }
 
@@ -109,24 +109,26 @@ class EditAccountActivity : AppCompatActivity() {
         val email = binding.inputEmailEdit.text.toString()
         val password = binding.inputPasswordEdit.text.toString()
 
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
-            Log.d("Image File", "showImage: ${imageFile.path}")
-            val description = "Ini adalah deksripsi gambar"
-            showLoading(true)
+        val usernameRequest = username.toRequestBody("text/plain".toMediaType())
+        val nameRequest = name.toRequestBody("text/plain".toMediaType())
+        val emailRequest = email.toRequestBody("text/plain".toMediaType())
+        val passwordRequest = password.toRequestBody("text/plain".toMediaType())
 
-            val usernameRequest = username.toRequestBody("text/plain".toMediaType())
-            val nameRequest = name.toRequestBody("text/plain".toMediaType())
-            val emailRequest = email.toRequestBody("text/plain".toMediaType())
-            val passwordRequest = password.toRequestBody("text/plain".toMediaType())
+        if (currentImageUri != null) {
+            val imageFile = uriToFile(currentImageUri!!, this).reduceFileImage()
+            Log.d("Image File", "showImage: ${imageFile.path}")
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
             val multipartBody = MultipartBody.Part.createFormData(
-                "photo",
+                "file",
                 imageFile.name,
                 requestImageFile
             )
             lifecycleScope.launch {
-                editAccountViewModel.editAccount(usernameRequest,nameRequest,emailRequest,passwordRequest,multipartBody)
+                editAccountViewModel.editAccount(usernameRequest, nameRequest, emailRequest, passwordRequest, multipartBody, user, username, email, name, password)
+            }
+        } else {
+            lifecycleScope.launch {
+                editAccountViewModel.editAccount(usernameRequest, nameRequest, emailRequest, passwordRequest, null, user, username, email, name, password)
             }
         }
     }

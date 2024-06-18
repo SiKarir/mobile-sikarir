@@ -15,6 +15,8 @@ import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -37,7 +39,7 @@ interface ApiService {
     @PUT("edit-account")
     fun editAccount(
         @Header("Authorization") token: String,
-        @Part file: MultipartBody.Part,
+        @Part file: MultipartBody.Part?,
         @Part("name") name: RequestBody,
         @Part("username") username: RequestBody,
         @Part("email") email: RequestBody,
