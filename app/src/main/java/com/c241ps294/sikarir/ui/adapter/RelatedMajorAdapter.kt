@@ -4,11 +4,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.c241ps294.sikarir.data.remote.response.ListJurusanTerkaitItem
+import com.c241ps294.sikarir.data.remote.response.ListMajorItem
 import com.c241ps294.sikarir.databinding.ItemMajorBinding
 import com.c241ps294.sikarir.ui.catalog.major.DetailMajorActivity
 
-class RelatedMajorsAdapter(private val majors: List<ListJurusanTerkaitItem>) : RecyclerView.Adapter<RelatedMajorsAdapter.MyViewHolder>() {
+class RelatedMajorsAdapter(private val majors: List<ListMajorItem>) : RecyclerView.Adapter<RelatedMajorsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemMajorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,7 +22,7 @@ class RelatedMajorsAdapter(private val majors: List<ListJurusanTerkaitItem>) : R
     override fun getItemCount(): Int = majors.size
 
     class MyViewHolder(private val binding: ItemMajorBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(major: ListJurusanTerkaitItem) {
+        fun bind(major: ListMajorItem) {
             binding.tvCenterText.text = major.name
 
             binding.root.setOnClickListener {

@@ -19,25 +19,6 @@ data class CareerResponse(
 	val message: String? = null
 ) : Parcelable
 
-@Parcelize
-data class ListJurusanTerkaitItem(
-
-	@field:SerializedName("photoUrl")
-	val photoUrl: String? = null,
-
-	@field:SerializedName("listUniversitasTerkait")
-	val listUniversitasTerkait: String? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("description")
-	val description: String? = null,
-
-	@field:SerializedName("id")
-	val id: String? = null
-) : Parcelable
-
 @Entity(tableName = "career")
 @Parcelize
 data class ListCareerItem(
@@ -52,7 +33,7 @@ data class ListCareerItem(
 	val description: String? = null,
 
 	@field:SerializedName("listJurusanTerkait")
-	val listJurusanTerkait: List<ListJurusanTerkaitItem?>? = null,
+	val listJurusanTerkait: List<ListMajorItem?>? = null,
 
 	@field:SerializedName("id")
 	@PrimaryKey
