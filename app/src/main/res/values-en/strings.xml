@@ -21,7 +21,7 @@
 
     <!-- WELCOME ACTIVITY -->
     <string name="title_welcome">Welcome!</string>
-    <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
+    <string name="description_welcome">The career recommendation app for you. Discover career paths tailored to your interests and skills with personalized quizzes and detailed profession information.</string>
     <string name="button_welcome">Continue</string>
 
     <!-- LOGIN FRAGMENT -->

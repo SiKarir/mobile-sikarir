@@ -56,7 +56,6 @@ class LoginFragment : Fragment() {
             it?.let {
                 if (!it.error) {
                     Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                    navigateToMainActivity()
                 }
             }
         }

@@ -41,6 +41,7 @@ class DetailCareerActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home_page -> {
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }
@@ -49,11 +50,13 @@ class DetailCareerActivity : AppCompatActivity() {
                 }
                 R.id.quiz_page -> {
                     val intent = Intent(this, QuizStarterActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }
                 R.id.settings_page -> {
                     val intent = Intent(this, SettingsActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
                     true
                 }

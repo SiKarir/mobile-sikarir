@@ -21,7 +21,7 @@
 
     <!-- WELCOME ACTIVITY -->
     <string name="title_welcome">Selamat Datang!</string>
-    <string name="description_welcome">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec sapien vitae magna cursus fringilla ac et mi.</string>
+    <string name="description_welcome">Aplikasi rekomendasi karir untuk anda. Temukan jalur karir yang sesuai dengan minat dan keterampilan Anda melalui kuis personalisasi dan informasi profesi yang detail.</string>
     <string name="button_welcome">Lanjut</string>
 
     <!-- LOGIN FRAGMENT -->
