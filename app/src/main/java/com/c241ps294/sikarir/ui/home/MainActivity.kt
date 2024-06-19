@@ -131,11 +131,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnLihatSemua.setOnClickListener{ navToCatalog() }
         setContentView(binding.root)
 
-        val pref = SettingPreferences.getInstance(application.dataStore)
-        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
-            ThemeViewModel::class.java
-        )
-        themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+        val pref = SettingPreferences.getInstance(dataStore)
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref))[ThemeViewModel::class.java]
+        themeViewModel.getThemeSettings().observe(this
+        ) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {

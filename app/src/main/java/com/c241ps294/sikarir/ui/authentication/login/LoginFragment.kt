@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.data.preference.user.User
 import com.c241ps294.sikarir.databinding.FragmentLoginBinding
 import com.c241ps294.sikarir.ui.authentication.register.RegisterFragment
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
@@ -24,8 +23,6 @@ class LoginFragment : Fragment() {
     private val authViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(requireActivity())
     }
-    private lateinit var username: String
-    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +39,8 @@ class LoginFragment : Fragment() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            username = binding.inputUsernameLogin.text.toString()
-            password = binding.inputPasswordLogin.text.toString()
+            val username = binding.inputUsernameLogin.text.toString()
+            val password = binding.inputPasswordLogin.text.toString()
             if (TextUtils.isEmpty(username)) {
                 binding.inputUsernameLogin.error = "Field must be filled"
             } else if (TextUtils.isEmpty(password)) {
@@ -59,7 +56,6 @@ class LoginFragment : Fragment() {
             it?.let {
                 if (!it.error) {
                     Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                    authViewModel.saveSession(User(username = username, userId = it.loginResult.userId, name = it.loginResult.name, token = it.loginResult.token, isTakenQuiz = it.loginResult.isTakenQuiz, photoUrl = it.loginResult.photoUrl, email = it.loginResult.email, password = password))
                     navigateToMainActivity()
                 }
             }
@@ -96,5 +92,6 @@ class LoginFragment : Fragment() {
     private fun navigateToMainActivity() {
         val intent = Intent(requireActivity(), MainActivity::class.java)
         startActivity(intent)
+        requireActivity().finishAffinity()
     }
 }

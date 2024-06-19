@@ -1,5 +1,6 @@
 package com.c241ps294.sikarir.data.remote.retrofit
 
+import com.c241ps294.sikarir.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,11 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
     companion object{
 
-        private val BASE_URL : String = "http://10.0.2.2:4000/"
+        private const val BASE_URL : String = BuildConfig.BASE_URL
 
         fun getApiService(): ApiService {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()

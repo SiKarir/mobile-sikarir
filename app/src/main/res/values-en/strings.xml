@@ -57,10 +57,11 @@
 
     <!-- CAREER FRAGMENT -->
     <string name="rekomendasi_karir_text">Your Career Recommendation</string>
+    <string name="daftar_karir_text">Career List</string>
 
     <!-- MAJOR FRAGMENT -->
     <string name="title_major_card">S1 Sistem Informasi</string>
-    <string name="rekomendasi_major_text">Your Major Recommendation</string>
+    <string name="title_major_text">Major List</string>
 
     <!-- SEARCH BAR -->
     <string name="searchbar_hint_karir">Enter career here</string>
@@ -75,6 +76,7 @@
     <string name="edit_name_hint">Name</string>
     <string name="edit_email_hint">Email</string>
     <string name="edit_password_hint">Password</string>
+    <string name="quiz_history_text">Quiz History</string>
 
     <!-- ACCOUNT SETTINGS -->
     <string name="quiz_history">Quiz History</string>
@@ -94,6 +96,15 @@
     <string name="quiz_starter_title">Let\'s find out your career recommendation!</string>
     <string name="quiz_starter_subtitle">Click on the start quiz button below</string>
     <string name="start_btn_quiz">Start Quiz</string>
-    <string name="daftar_karir_text">Daftar Karir</string>
+    <string name="str_not_taken_account">No quiz history yet, let\'s take your Quiz!</string>
+
+    <!-- ADAPTER -->
+    <string name="retry">Retry</string>
+
+    <!-- LANGUAGE ACTIVITY -->
+    <string name="choose_language_text">Continue</string>
+    <string name="lan_indo">Indonesia</string>
+    <string name="lan_eng">English</string>
+    <string name="choose_language">Choose Language</string>
 
 </resources>

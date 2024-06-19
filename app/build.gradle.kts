@@ -1,3 +1,10 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val properties = Properties()
+properties.load(FileInputStream(rootProject.file("local.properties")))
+val baseUrl: String = properties.getProperty("BASE_URL")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,6 +24,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"${baseUrl}\"")
     }
 
     buildTypes {
@@ -32,6 +41,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

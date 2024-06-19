@@ -4,7 +4,6 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -99,14 +98,14 @@ class SettingsActivity : AppCompatActivity() {
         val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref))[ThemeViewModel::class.java]
 
         themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            switchTheme.isChecked = isDarkModeActive
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                switchTheme.isChecked = false
             }
         }
+
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             themeViewModel.saveThemeSetting(isChecked)
         }

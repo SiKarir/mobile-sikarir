@@ -44,6 +44,21 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _loginUser.value = response.body()
+                    response.body()?.let {
+                        val user = User(
+                            username = username,
+                            name = it.loginResult.name,
+                            email = it.loginResult.email,
+                            password = password,
+                            photoUrl = it.loginResult.photoUrl,
+                            isTakenQuiz = it.loginResult.isTakenQuiz,
+                            token = it.loginResult.token,
+                            userId = it.loginResult.userId
+                        )
+                        viewModelScope.launch {
+                            userRepository.saveSession(user)
+                        }
+                    }
                 } else {
                     _errorMessageLogin.value = "Login failed: ${response.message()}"
                     Log.e(TAG, "onFailure: ${response.message()}")
