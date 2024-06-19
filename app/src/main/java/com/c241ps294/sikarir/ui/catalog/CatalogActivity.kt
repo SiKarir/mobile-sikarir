@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
 import com.c241ps294.sikarir.R
@@ -62,6 +63,12 @@ class CatalogActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
 
         setContentView(binding.root)
     }

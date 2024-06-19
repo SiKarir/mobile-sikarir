@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityQuizStarterBinding
 import com.c241ps294.sikarir.ui.catalog.CatalogActivity
@@ -49,6 +50,12 @@ class QuizStarterActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
 
         binding.quizButton.setOnClickListener { takeAQuiz() }
         setContentView(binding.root)

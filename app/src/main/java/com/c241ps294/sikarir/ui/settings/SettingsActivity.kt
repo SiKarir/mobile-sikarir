@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
@@ -112,6 +113,12 @@ class SettingsActivity : AppCompatActivity() {
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             themeViewModel.saveThemeSetting(isChecked)
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
     }
 
     private fun logout() {
