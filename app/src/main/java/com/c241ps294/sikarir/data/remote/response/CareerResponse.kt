@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 data class CareerResponse(
 
 	@field:SerializedName("listCareer")
-	val listCareer: List<ListCareerItem?>? = null,
+	val listCareer: List<ListCareerItem>,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,

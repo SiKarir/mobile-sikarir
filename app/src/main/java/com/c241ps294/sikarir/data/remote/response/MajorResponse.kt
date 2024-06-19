@@ -13,7 +13,7 @@ data class MajorResponse(
 	val totalMajors: Int? = null,
 
 	@field:SerializedName("listMajor")
-	val listMajor: List<ListMajorItem?>? = null,
+	val listMajor: List<ListMajorItem>,
 
 	@field:SerializedName("totalPages")
 	val totalPages: Int? = null,

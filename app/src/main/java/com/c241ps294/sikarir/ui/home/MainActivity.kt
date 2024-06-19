@@ -23,6 +23,9 @@ import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.data.preference.SettingPreferences
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
 import com.c241ps294.sikarir.data.preference.dataStore
+import com.c241ps294.sikarir.data.remote.response.ListCareerItem
+import com.c241ps294.sikarir.ui.catalog.career.DetailCareerActivity
+import com.c241ps294.sikarir.ui.settings.account.AccountActivity
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModel
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewSwitcher: ViewSwitcher
     private lateinit var majorListAdapter: MajorListAdapter
+    private lateinit var career: ListCareerItem
 
     private val authenticationViewModel by viewModels<AuthenticationViewModel> {
         AuthenticationViewModelFactory.getInstance(context = this)
@@ -68,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                     viewSwitcher.displayedChild = 0
                     mainViewModel.getQuizHistory(it.token)
                     mainViewModel.quizzes.observe(this) { quiz ->
+                        career =  quiz[quiz.size-1].recommendation[0]
                         binding.tvTitle.text = quiz[quiz.size-1].recommendation[0].name
                         binding.tvDescription.text = quiz[quiz.size-1].recommendation[0].description
                     }
@@ -75,8 +80,8 @@ class MainActivity : AppCompatActivity() {
 
                 setGreeting(it.username)
                 Glide.with(this).load(it.photoUrl).into(binding.ivAvatarAccount)
-                mainViewModel.majors.observe(this) {
-                    majorListAdapter.submitNonPaginatedList(it)
+                mainViewModel.majors.observe(this) { item ->
+                    majorListAdapter.submitNonPaginatedList(item)
                 }
             }
         }
@@ -111,6 +116,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.cardView.setOnClickListener{
+            val intent = Intent(this, DetailCareerActivity::class.java)
+            intent.putExtra(DetailCareerActivity.EXTRA_DATA, career)
+            startActivity(intent)
+        }
+
+        binding.btnTakeQuiz.setOnClickListener{ navToQuiz() }
+
+        binding.ivAvatarAccount.setOnClickListener{ navToAccount() }
+
         binding.btnLihatSemua.setOnClickListener{ navToCatalog() }
         setContentView(binding.root)
 
@@ -125,6 +140,16 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+    }
+
+    private fun navToAccount() {
+        val intent = Intent(this, AccountActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navToQuiz() {
+        val intent = Intent(this, QuizStarterActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setGreeting(username: String) {

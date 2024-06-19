@@ -106,5 +106,6 @@
     <string name="quiz_pointer">%s/100</string>
     <string name="str_not_taken_account">Belum ada riwayat quiz, silahkan ambil quiz!</string>
     <string name="daftar_karir_text">Daftar Karir</string>
+    <string name="retry">Coba Lagi</string>
 
 </resources>

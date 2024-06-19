@@ -13,6 +13,7 @@ import com.c241ps294.sikarir.data.database.MajorDatabase
 import com.c241ps294.sikarir.data.remote.retrofit.ApiConfig
 import com.c241ps294.sikarir.data.repository.MajorRepository
 import com.c241ps294.sikarir.databinding.FragmentMajorBinding
+import com.c241ps294.sikarir.ui.adapter.LoadingStateAdapter
 import com.c241ps294.sikarir.ui.adapter.MajorListAdapter
 import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModel
 import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModelFactory
@@ -20,9 +21,6 @@ import com.c241ps294.sikarir.ui.catalog.viewmodel.MajorViewModelFactory
 class MajorFragment : Fragment() {
     private var _binding: FragmentMajorBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var majorRepository: MajorRepository
-
     private lateinit var majorViewModel: MajorViewModel
     private lateinit var majorListAdapter: MajorListAdapter
 
@@ -39,18 +37,21 @@ class MajorFragment : Fragment() {
 
         majorListAdapter = MajorListAdapter()
 
-        binding.rvMajor.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = majorListAdapter
-        }
+        val layoutManagerMajorList = LinearLayoutManager(context)
+        binding.rvMajor.layoutManager = layoutManagerMajorList
 
+        binding.rvMajor.adapter = majorListAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                majorListAdapter.retry()
+            }
+        )
         val context = requireContext()
         val apiService = ApiConfig.getApiService()
         val database = MajorDatabase.getDatabase(context)
         val majorRepository = MajorRepository(database, apiService)
         val factory = MajorViewModelFactory(majorRepository)
 
-        majorViewModel = ViewModelProvider(this, factory).get(MajorViewModel::class.java)
+        majorViewModel = ViewModelProvider(this, factory)[MajorViewModel::class.java]
         setupSearch()
         getData()
     }

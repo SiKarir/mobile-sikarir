@@ -1,5 +1,6 @@
 package com.c241ps294.sikarir.ui.catalog.career
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,11 +17,13 @@ import com.c241ps294.sikarir.data.repository.CareerRepository
 import com.c241ps294.sikarir.data.repository.QuizRepository
 import com.c241ps294.sikarir.databinding.FragmentCareerBinding
 import com.c241ps294.sikarir.ui.adapter.CareerListAdapter
+import com.c241ps294.sikarir.ui.adapter.LoadingStateAdapter
 import com.c241ps294.sikarir.ui.adapter.RecommendedCareerAdapter
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory
 import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModel
 import com.c241ps294.sikarir.ui.catalog.viewmodel.CareerViewModelFactory
+import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 
 class CareerFragment : Fragment() {
     private var _binding: FragmentCareerBinding? = null
@@ -47,10 +50,14 @@ class CareerFragment : Fragment() {
         careerListAdapter = CareerListAdapter()
         recommendedCareerAdapter = RecommendedCareerAdapter()
 
-        binding.rvCareer.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = careerListAdapter
-        }
+        val layoutManagerCareerList = LinearLayoutManager(context)
+        binding.rvCareer.layoutManager = layoutManagerCareerList
+
+        binding.rvCareer.adapter = careerListAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                careerListAdapter.retry()
+            }
+        )
 
         binding.rvCareerRecommendation.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -64,21 +71,22 @@ class CareerFragment : Fragment() {
         val quizRepository = QuizRepository(apiService)
         val factory = CareerViewModelFactory(careerRepository, quizRepository)
 
-        careerViewModel = ViewModelProvider(this, factory).get(CareerViewModel::class.java)
+        careerViewModel = ViewModelProvider(this, factory)[CareerViewModel::class.java]
         setupSearch()
         setupObservers()
 
         authenticationViewModel.getSession().observe(viewLifecycleOwner) { session ->
-                if (!session.isTakenQuiz) {
-                    binding.quizLayout.visibility = View.VISIBLE
-                    binding.rvCareerRecommendation.visibility = View.GONE
-                } else {
-                    binding.quizLayout.visibility = View.GONE
-                    binding.rvCareerRecommendation.visibility = View.VISIBLE
-                    careerViewModel.getQuizHistory(session.token)
-                }
-
+            if (!session.isTakenQuiz) {
+                binding.quizLayout.visibility = View.VISIBLE
+                binding.rvCareerRecommendation.visibility = View.GONE
+            } else {
+                binding.quizLayout.visibility = View.GONE
+                binding.rvCareerRecommendation.visibility = View.VISIBLE
+                careerViewModel.getQuizHistory(session.token)
+            }
         }
+
+        binding.btnTakeQuiz.setOnClickListener{ navToQuiz() }
     }
 
     private fun setupObservers() {
@@ -117,6 +125,11 @@ class CareerFragment : Fragment() {
                 searchBar.setText(it.toString())
             }
         }
+    }
+
+    private fun navToQuiz() {
+        val intent = Intent(context, QuizStarterActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
