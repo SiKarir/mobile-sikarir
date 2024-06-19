@@ -57,6 +57,7 @@
 
     <!-- CAREER FRAGMENT -->
     <string name="rekomendasi_karir_text">Rekomendasi Karir Anda</string>
+    <string name="daftar_karir_text">Daftar Karir</string>
 
     <!-- MAJOR FRAGMENT -->
     <string name="title_major_card">S1 Sistem Informasi</string>
@@ -105,7 +106,14 @@
     <string name="start_btn_quiz">Mulai Quiz</string>
     <string name="quiz_pointer">%s/100</string>
     <string name="str_not_taken_account">Belum ada riwayat quiz, silahkan ambil quiz!</string>
-    <string name="daftar_karir_text">Daftar Karir</string>
+
+    <!-- ADAPTER -->
     <string name="retry">Coba Lagi</string>
+
+    <!-- LANGUAGE ACTIVITY -->
+    <string name="choose_language_text">Lanjut</string>
+    <string name="lan_indo">Bahasa Indonesia</string>
+    <string name="lan_eng">Bahasa Inggris</string>
+    <string name="choose_language">Pilih Bahasa</string>
 
 </resources>

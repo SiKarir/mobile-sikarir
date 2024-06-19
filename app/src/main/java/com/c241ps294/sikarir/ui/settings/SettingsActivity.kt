@@ -22,6 +22,7 @@ import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
 import com.c241ps294.sikarir.ui.settings.account.AccountActivity
 import com.c241ps294.sikarir.ui.settings.account.EditAccountActivity
+import com.c241ps294.sikarir.ui.settings.language.LanguageActivity
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModel
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
@@ -80,7 +81,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.arrowButtonBahasa.setOnClickListener {
-            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            startActivity(Intent(this, LanguageActivity::class.java))
         }
 
         authenticationViewModel.getSession().observe(this) {
