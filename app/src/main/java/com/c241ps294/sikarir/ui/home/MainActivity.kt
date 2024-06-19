@@ -2,6 +2,7 @@ package com.c241ps294.sikarir.ui.home
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.ViewSwitcher
@@ -31,6 +32,7 @@ import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -140,6 +142,10 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+
+        val sharedPref = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val languageCode = sharedPref.getString("languageCode", "id") ?: "id"
+        setLocale(languageCode)
     }
 
     private fun navToAccount() {
@@ -167,5 +173,14 @@ class MainActivity : AppCompatActivity() {
     private fun navToCatalog() {
         val intent = Intent(this, CatalogActivity::class.java)
         startActivity(intent)
+    }
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val config = Configuration().apply {
+            setLocale(locale)
+        }
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 }

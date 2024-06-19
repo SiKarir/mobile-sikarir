@@ -1,7 +1,6 @@
 package com.c241ps294.sikarir.ui.settings.language
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
@@ -50,7 +49,7 @@ class LanguageActivity : AppCompatActivity() {
             }
         }
 
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = this.getSharedPreferences("AppPreferences", MODE_PRIVATE)
         var languageCode = sharedPref.getString("languageCode", "id") ?: "id"
 
         when (languageCode) {
@@ -87,7 +86,7 @@ class LanguageActivity : AppCompatActivity() {
 
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
-        with(getPreferences(Context.MODE_PRIVATE).edit()) {
+        getSharedPreferences("AppPreferences", MODE_PRIVATE).edit().apply {
             putString("languageCode", languageCode)
             apply()
         }
