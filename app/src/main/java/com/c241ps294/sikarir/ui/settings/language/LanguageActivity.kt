@@ -30,9 +30,7 @@ class LanguageActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.settings_page -> {
-                    true
-                }
+                R.id.settings_page -> true
                 R.id.catalog_page -> {
                     val intent = Intent(this, CatalogActivity::class.java)
                     startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle())
@@ -53,20 +51,29 @@ class LanguageActivity : AppCompatActivity() {
         }
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
-        var languageCode = sharedPref.getString("languageCode", "id")
+        var languageCode = sharedPref.getString("languageCode", "id") ?: "id"
 
         when (languageCode) {
-            "id" -> binding.radioButtonIndonesia.isChecked = true
+            "id" -> binding.radioButtonIndonesian.isChecked = true
             "en" -> binding.radioButtonEnglish.isChecked = true
         }
 
-        binding.btnChooseLanguage.setOnClickListener {
-            languageCode = when (binding.radioGroupLanguage.checkedRadioButtonId) {
-                R.id.radioButtonIndonesia -> "id"
-                R.id.radioButtonEnglish -> "en"
-                else -> return@setOnClickListener
+        binding.radioButtonIndonesian.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                languageCode = "id"
+                binding.radioButtonEnglish.isChecked = false
             }
-            setLocale(languageCode!!)
+        }
+
+        binding.radioButtonEnglish.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                languageCode = "en"
+                binding.radioButtonIndonesian.isChecked = false
+            }
+        }
+
+        binding.btnChooseLanguage.setOnClickListener {
+            setLocale(languageCode)
         }
     }
 
@@ -74,8 +81,10 @@ class LanguageActivity : AppCompatActivity() {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
 
-        val config = Configuration()
-        config.setLocale(locale)
+        val config = Configuration().apply {
+            setLocale(locale)
+        }
+
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
         with(getPreferences(Context.MODE_PRIVATE).edit()) {
