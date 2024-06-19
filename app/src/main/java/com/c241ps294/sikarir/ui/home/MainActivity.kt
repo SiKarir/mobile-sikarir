@@ -20,9 +20,9 @@ import com.c241ps294.sikarir.ui.catalog.CatalogActivity
 import com.c241ps294.sikarir.ui.home.viewmodel.MainViewModel
 import com.c241ps294.sikarir.ui.home.viewmodel.MainViewModelFactory
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity
-import com.c241ps294.sikarir.ui.settings.SettingPreferences
+import com.c241ps294.sikarir.data.preference.SettingPreferences
 import com.c241ps294.sikarir.ui.settings.SettingsActivity
-import com.c241ps294.sikarir.ui.settings.dataStore
+import com.c241ps294.sikarir.data.preference.dataStore
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModel
 import com.c241ps294.sikarir.ui.settings.viewmodel.ThemeViewModelFactory
 import com.c241ps294.sikarir.ui.welcome.WelcomeActivity

@@ -1,4 +1,4 @@
-package com.c241ps294.sikarir.ui.settings
+package com.c241ps294.sikarir.data.preference
 
 import android.content.Context
 import androidx.datastore.core.DataStore

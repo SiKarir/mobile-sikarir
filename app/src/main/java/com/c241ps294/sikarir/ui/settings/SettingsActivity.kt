@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
+import com.c241ps294.sikarir.data.preference.SettingPreferences
+import com.c241ps294.sikarir.data.preference.dataStore
 import com.c241ps294.sikarir.databinding.ActivitySettingsBinding
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModel
 import com.c241ps294.sikarir.ui.authentication.viewmodel.AuthenticationViewModelFactory

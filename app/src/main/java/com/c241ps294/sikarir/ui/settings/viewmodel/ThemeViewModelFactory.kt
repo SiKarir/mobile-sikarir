@@ -2,7 +2,7 @@ package com.c241ps294.sikarir.ui.settings.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.c241ps294.sikarir.ui.settings.SettingPreferences
+import com.c241ps294.sikarir.data.preference.SettingPreferences
 
 class ThemeViewModelFactory(private val pref: SettingPreferences) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

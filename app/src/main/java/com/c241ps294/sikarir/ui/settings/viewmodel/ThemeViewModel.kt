@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.c241ps294.sikarir.ui.settings.SettingPreferences
+import com.c241ps294.sikarir.data.preference.SettingPreferences
 import kotlinx.coroutines.launch
 
 class ThemeViewModel(private val pref: SettingPreferences) : ViewModel() {
