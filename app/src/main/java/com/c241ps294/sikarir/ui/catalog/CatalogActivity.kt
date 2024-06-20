@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
 import com.c241ps294.sikarir.R
-import com.c241ps294.sikarir.SectionsPagerAdapter
+import com.c241ps294.sikarir.ui.adapter.SectionsPagerAdapter
 import com.c241ps294.sikarir.databinding.ActivityCatalogBinding
 import com.c241ps294.sikarir.ui.home.MainActivity
 import com.c241ps294.sikarir.ui.quiz.starter.QuizStarterActivity

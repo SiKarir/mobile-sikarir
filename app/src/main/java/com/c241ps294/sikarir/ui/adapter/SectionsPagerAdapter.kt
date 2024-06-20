@@ -1,4 +1,4 @@
-package com.c241ps294.sikarir
+package com.c241ps294.sikarir.ui.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
