@@ -55,6 +55,7 @@
 
         <ImageView
             android:id="@+id/ivQuizImage"
+            android:layout_marginTop="20dp"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:src="@drawable/ic_launcher_background"
