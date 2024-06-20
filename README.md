@@ -6,7 +6,7 @@ SiKarir is an innovative mobile app designed to assist final-year high school st
 
 ## Getting Started 📤
 1. **Android Device**: Make sure you have an Android phone.
-2. **Download the App**: [Download SiKarir here](your-download-link) and install it on your device.
+2. **Download the App**: [Download SiKarir here](https://github.com/SiKarir/mobile-sikarir/releases/tag/SiKarir-Release) and install it on your device.
 3. **Internet Connection**: Ensure you have an active internet connection to fully experience all features of the app.
 
 ## Features 📱
