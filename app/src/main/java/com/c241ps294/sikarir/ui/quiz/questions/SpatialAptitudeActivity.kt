@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.c241ps294.sikarir.R
@@ -128,6 +129,19 @@ class SpatialAptitudeActivity : AppCompatActivity() {
 
         bindViews()
         setUpEventListener()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (questionPointer == 0) {
+                    val intent = Intent(this@SpatialAptitudeActivity, NumericalAptitudeActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                    startActivity(intent, ActivityOptions.makeCustomAnimation(this@SpatialAptitudeActivity, 0, 0).toBundle())
+                } else {
+                    questionPointer--
+                    bindViews()
+                }
+            }
+        })
     }
 
     private fun setUpEventListener() {

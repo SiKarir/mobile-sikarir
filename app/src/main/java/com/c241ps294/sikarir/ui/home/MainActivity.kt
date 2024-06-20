@@ -67,16 +67,18 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else {
+                mainViewModel.getQuizHistory(it.token)
                 viewSwitcher = binding.viewSwitcher
                 if (!it.isTakenQuiz) {
                     viewSwitcher.displayedChild = 1
                 } else {
                     viewSwitcher.displayedChild = 0
-                    mainViewModel.getQuizHistory(it.token)
                     mainViewModel.quizzes.observe(this) { quiz ->
-                        career =  quiz[quiz.size-1].recommendation[0]
-                        binding.tvTitle.text = quiz[quiz.size-1].recommendation[0].name
-                        binding.tvDescription.text = quiz[quiz.size-1].recommendation[0].description
+                        if (quiz.isNotEmpty()) {
+                            career =  quiz[quiz.size-1].recommendation[0]
+                            binding.tvTitle.text = quiz[quiz.size-1].recommendation[0].name
+                            binding.tvDescription.text = quiz[quiz.size-1].recommendation[0].description
+                        }
                     }
                 }
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.VerbalReasoning
@@ -176,6 +177,19 @@ class VerbalReasoningActivity : AppCompatActivity() {
 
         bindViews()
         setUpEventListener()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (questionPointer == 0) {
+                    val intent = Intent(this@VerbalReasoningActivity, AbstractReasoningActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                    startActivity(intent, ActivityOptions.makeCustomAnimation(this@VerbalReasoningActivity, 0, 0).toBundle())
+                } else {
+                    questionPointer--
+                    bindViews()
+                }
+            }
+        })
     }
 
     private fun setUpEventListener() {

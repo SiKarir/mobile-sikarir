@@ -107,6 +107,12 @@
     <string name="start_btn_quiz">Mulai Quiz</string>
     <string name="quiz_pointer" translatable="false">%s/100</string>
     <string name="str_not_taken_account">Belum ada riwayat quiz, silahkan ambil quiz!</string>
+    <string name="start_quiz">Mulai Quiz</string>
+    <string name="validate_start_quiz">Quiz ini berisikan 100 soal. Dengan menyelesaikan ini, kamu akan mendapatkan rekomendasi karir yang cocok untukmu.</string>
+    <string name="start_quiz_btn">Ya</string>
+    <string name="cancel_quiz_btn">Tidak</string>
+    <string name="exit_quiz">Keluar Quiz</string>
+    <string name="validate_exit_quiz">Apakah kamu yakin ingin keluar? jawaban kamu tidak akan tersimpan</string>
 
     <!-- ADAPTER -->
     <string name="retry">Coba Lagi</string>

@@ -5,9 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.data.local.quiz.LikertScale
+import com.c241ps294.sikarir.data.local.storage.AnswerStorage
 import com.c241ps294.sikarir.databinding.ActivityLikertScaleBinding
 import com.c241ps294.sikarir.ui.adapter.LikertScaleAnswerAdapter
 
@@ -76,6 +79,17 @@ class LikertScaleActivity : AppCompatActivity() {
 
         bindViews()
         setUpEventListener()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (questionPointer == 0) {
+                    showExitConfirmationDialog()
+                } else {
+                    questionPointer--
+                    bindViews()
+                }
+            }
+        })
     }
 
     private fun setUpEventListener() {
@@ -135,5 +149,21 @@ class LikertScaleActivity : AppCompatActivity() {
     private fun enableNextButton(enable: Boolean) {
         binding.btnNext.isEnabled = enable
         binding.btnNext.alpha = if (enable) 1.0f else 0.5f
+    }
+
+    private fun showExitConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.exit_quiz)
+            .setMessage(R.string.validate_exit_quiz)
+            .setPositiveButton(R.string.start_quiz_btn) { dialog, _ ->
+                dialog.dismiss()
+                AnswerStorage.clearAnswers()
+                finish()
+            }
+            .setNegativeButton(R.string.cancel_quiz_btn) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 }

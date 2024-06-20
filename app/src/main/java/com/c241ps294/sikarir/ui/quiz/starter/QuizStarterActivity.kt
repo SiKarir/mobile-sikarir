@@ -1,9 +1,12 @@
 package com.c241ps294.sikarir.ui.quiz.starter
 
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import com.c241ps294.sikarir.R
 import com.c241ps294.sikarir.databinding.ActivityQuizStarterBinding
@@ -61,8 +64,26 @@ class QuizStarterActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    @SuppressLint("InflateParams")
     private fun takeAQuiz() {
-        val intent = Intent(this, LikertScaleActivity::class.java)
-        startActivity(intent)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_starter_quiz, null)
+        val dialog = Dialog(this)
+        dialog.setContentView(dialogView)
+
+        val btnYes = dialogView.findViewById<Button>(R.id.btnYes)
+        val btnNo = dialogView.findViewById<Button>(R.id.btnNo)
+
+        btnYes.setOnClickListener {
+            val intent = Intent(this, LikertScaleActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
+
 }
